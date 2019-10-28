@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <!-- Bootstrap setup -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        body {
+            min-height: 100vh;
+            position: relative;
+            margin:0;
+            font-family: "Lato", sans-serif;
+            background-color: darkgrey;
+        }
+            
+        
+
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            /*background-color: #dfe6e9;*/
+            display: flex;
+            width: auto;
+            padding-top: 40px;
+            justify-content: left;
+        }
+
+        .calendar {
+            margin: auto;
+            width: 1200px;
+            background-color: #fff;
+            box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.2);
+       
+        }
+
+        .month {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 40px 30px;
+            text-align: center;
+            background-color: deepskyblue;
+            color: #fff;
+        }
+
+        .weekdays {
+            background-color: deepskyblue;
+            color: #fff;
+            padding: 7px 0;
+            display: flex;
+        }
+
+        .days {
+            font-weight: 300;
+            padding: 10px 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .weekdays div,
+        .days div {
+            text-align: center;
+            width: 14.28%;
+        }
+
+        .days div {
+            padding: 10px 0;
+            margin-bottom: 10px;
+            transition: all 0.4s;
+        }
+
+        .prev_date {
+            color: #999;
+        }
+
+        .today {
+            background-color: deepskyblue;
+            color: #fff;
+        }
+
+        .days div:hover {
+            cursor: pointer;
+            background-color: #dfe6e9
+        }
+
+        .prev,
+        .next {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 23px;
+            background-color: rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+        }
+
+        .prev:hover,
+        .next:hover {
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        #month {
+            font-size: 30px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body onload="renderDate()">
+    <header>
+            <nav class="navbar navbar-expand-md bg-light">
+
+          <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <a class="navbar-brand d-none d-md-block" routerLink="">
+            KB Planner
+          </a>
+
+
+          <!-- Only visible when navbar collapses
+            Collapses links
+            Adds a user icon for account
+          -->
+          <a class="navbar-brand ml-auto mr-auto d-md-none" routerLink="">
+            KB Planner
+          </a>
+
+          <a href="#">
+            <img class="d-md-none" src="assets/svg/user-1633249.svg" height="30px" width="30px" />
+          </a>
+
+          <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="">Home</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/calendar">Calendar</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/grades">Grades</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/discussionBoard">Discussion Board</a>
+              </li>
+
+            </ul>
+          </div>
+
+          <a class="account d-none d-md-block" href="#">
+          
+              <img src="assets/svg/user-1633249.svg" width = "30" height = "30" alt="Profile">
+              
+          </a>
+
+        </nav>
+    
+    </header>
+
+    <!-- End of Nav Bar -->
+    
+    
+    <div class = "container-fluid" style = "padding-top: 10px">
+            
+        <div class = "row">
+            <!-- TO DO Area -->
+            <div class = "col-4">
+                <div class = "card text-center" style = "min-height: 300px">
+                    <div class = "card-header">
+                        
+                        <div class = "row justify-content-center">
+                            <h3 style = "padding-right: 10px;"> <span class = "badge badge-danger"> TO DO </span> </h3>
+                            <input type = "button" class = "btn btn-danger" id="addTask" value="+" onClick = "">
+                        </div>
+                    </div>
+                    
+                    <div class = "card-body">
+                       <h2> <span class = "badge badge-pill badge-danger">Capture data from front end forms</span> </h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IN PROGRESS Area -->
+            <div class = "col-4">
+                <div class = "card bg-light text-center" style = "min-height: 300px">
+                    <div class = "card-body">
+                        <h2><span class = "badge badge-pill badge-warning"> Finish MotherShip API functions</span></h2>
+                        <h2> <span class = "badge badge-pill badge-warning"> Uncover the mysteries of connecting to MSSQL </span> </h2>
+                    </div>
+
+                    <div class = "card-footer"> <span class = "badge badge-warning">IN PROGRESS</span></div>
+                </div>
+            </div>
+
+            <!-- DONE Area -->
+            <div class = "col-4">
+                <div class = "card text-center" style = "min-height: 300px">
+                    <div class = "card-header">
+                        <h3><span class = "badge badge-success"> DONE </span> </h3>
+                    </div>
+                    <div class = "card-body">
+                        <h2> <span class = "badge badge-pill badge-success"> Finish presentation for HW4</span> </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        
+    <div class="wrapper">
+        <div class="calendar">
+            <div class="month">
+                <div class="prev" onclick="moveDate('prev')">
+                    <span>&#10094;</span>
+                </div>
+                <div>
+                    <h2 id="month"></h2>
+                    <p id="date_str"></p>
+                </div>
+                <div class="next" onclick="moveDate('next')">
+                    <span>&#10095;</span>
+                </div>
+            </div>
+            <div class="weekdays">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+            <div class="days">
+
+            </div>
+        </div>
+    </div>
+    
+    <!-- End of Calendar Div -->
+    
+    <footer class = "footer">
+
+            <nav class="navbar fixed-bottom navbar-light bg-light">
+                <ul class="navbar-nav flex-row m-auto">
+                    <li class="nav-item">
+                        <a routerLink="/about" class="nav-link mr-2">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/contact" class="nav-link ml-2" style = "text-align: right">CONTACT US</a>
+                    </li>
+                </ul>
+            </nav>
+    </footer>
+    
+    
+    <!-- End of footer -->
+    
+    
+    
+    <script>
+        var dt = new Date();
+        //console.log(dt);
+        function renderDate() {
+            //console.log(dt);
+            var day = dt.getDay();
+            var today = new Date();
+            var endDate = new Date(
+                dt.getFullYear(),
+                dt.getMonth() + 1,
+                0
+            ).getDate();
+            //console.log(dt.getFullYear());
+            var prevDate = new Date(
+                dt.getFullYear(),
+                dt.getMonth(),
+                0
+            ).getDate();
+            var months = [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December"
+            ]
+            document.getElementById("month").innerHTML = months[dt.getMonth()];
+            //console.log(dt.toDateString());
+            var cells = "";
+            for (x = day; x > 0; x--) {
+                cells += "<div class='prev_date'>" + (prevDate - x + 1) + "</div>";
+            }
+            //console.log(day);
+            for (i = 1; i <= endDate; i++) {
+                if (i == today.getDate() && dt.getMonth() == today.getMonth()) cells += "<div class='today'>" + i + "</div>";
+                else
+                    cells += "<div>" + i + "</div>";
+            }
+            document.getElementsByClassName("days")[0].innerHTML = cells;
+
+        }
+
+        function moveDate(para) {
+            if(para == "prev") {
+                dt.setMonth(dt.getMonth() - 1);
+            } else if(para == 'next') {
+                dt.setMonth(dt.getMonth() + 1);
+            }
+            renderDate();
+        }
+    </script>
+</body>
+
+</html>
