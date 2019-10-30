@@ -20,14 +20,20 @@ var comments =
 
 var i = 0
 var j = 0
+
+
 var original = document.getElementById("discussion-card")
 
 
 parentEl = document.getElementById('discussion-board');
 
-
+function getElementImage()
+{
+   return 
+}
 function changeImage(id) 
 {
+
     i = i + 1;
     thumbid = "thumb" + id
     document.getElementById(thumbid).src = images[i];
@@ -41,9 +47,10 @@ function changeImage(id)
 function newPost()
 //code to add a new post
 {
-    childEl = document.createElement("card"); //creates a new card
+    var childEl = document.createElement("card"); //creates a new card
     //details tag not supported by IE
-    childEl.innerHTML = "<div id='discussion-card"+j + "' style='border-style:solid;'> <div class='card-header' style='padding-top: 20px'> <img class='card-img-top' src='assets/svg/user-1633249.svg' alt='Card image' style='width: 3%;'> Name <div class='card-img'> <a href='#' style='color:black;  outline-style: hidden;'>" + getPostTitle() + "</a> </div> </div> <div> <img alt='' class='ml-auto' src='assets/svg/thumbs-up.png' onclick='changeImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px;'><summary>Comments </summary><ul> comments will go here </ul </details></div> </div> </div> </div>"
+    childEl.setAttribute("class", "card mb-2")
+    childEl.innerHTML = "<div id='discussion-card"+j + "' style=' padding-bottom:30px'> <div class='card-header' style='padding-top: 20px;'> <img class='card-img-top' src='assets/svg/user-1633249.svg' alt='Card image' style='width: 3%;'> Name <div class='card-img text-center'> <a href='#' style='color:black;  outline-style: hidden; '>" + getPostTitle() + "</a> </div> </div> <div> <img alt='' class='ml-auto' src='assets/svg/thumbs-up.png' onclick='changeImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px;'><summary>Comments </summary><ul> comments will go here </ul </details></div> </div> </div> </div>"
     console.log(childEl)
     document.getElementById("discussion-board").appendChild(childEl);
     j = j + 1
