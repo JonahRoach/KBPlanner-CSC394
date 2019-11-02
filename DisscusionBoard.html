@@ -76,15 +76,9 @@
 
 <div id="discussion-board" class="mx-auto w-75 p3">
     <!-- Discussion Nav Start -->
-    <ul class="nav nav-pills mx-auto">
+    <ul class="nav nav-pills mx-auto" id="d-navbar">
             <li class="nav-item">
-                  <a class="nav-link active" href="#">General</a>
-            </li>
-            <li class="nav-item">
-                  <a class="nav-link" href="#">Brainstorming</a>
-            </li>
-            <li class="nav-item">
-                  <a class="nav-link disabled" href="#">etc</a>
+               <input type="text" id="section" placeholder="Add New Section"> <button type="button" class="btn btn-primary" onclick="addDiscussionSection(); updateSections(); clearSectionInput();"> + </button> 
             </li>
     </ul>
     <!--Discussion Nav End-->

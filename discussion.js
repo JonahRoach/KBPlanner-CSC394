@@ -11,10 +11,11 @@ var dposts =
 
 ]
 
-var comments =
+var sections = ["General", "Brainstorming"]
+
+var allcomments =
 [
-    {post0: "discussion-card0", comments:["Here is a comment","Another comment"]},
-    {post1: "discussion-card1", comments:["Hello mister man", "Wow such a cool comment"]}
+    
 ]
 
 
@@ -27,10 +28,20 @@ var original = document.getElementById("discussion-card")
 
 parentEl = document.getElementById('discussion-board');
 
-function getElementImage()
+
+window.onload = function populateDiscussionSections()
 {
-   return 
+    var parent = document.getElementById("d-navbar")
+    for(var i = 0; i < sections.length; i++)
+    {
+        var el = document.createElement('li')
+        el.setAttribute("class", "nav-item")
+        el.innerHTML = "<a class='nav-link' href=''>"+ sections[i] +"</a>"
+        parent.appendChild(el)
+    } 
+
 }
+
 function changeImage(id) 
 {
 
@@ -50,10 +61,42 @@ function newPost()
     var childEl = document.createElement("card"); //creates a new card
     //details tag not supported by IE
     childEl.setAttribute("class", "card mb-2")
-    childEl.innerHTML = "<div id='discussion-card"+j + "' style=' padding-bottom:30px'> <div class='card-header' style='padding-top: 20px;'> <img class='card-img-top' src='assets/svg/user-1633249.svg' alt='Card image' style='width: 3%;'> Name <div class='card-img text-center'> <a href='#' style='color:black;  outline-style: hidden; '>" + getPostTitle() + "</a> </div> </div> <div> <img alt='' class='ml-auto' src='assets/svg/thumbs-up.png' onclick='changeImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px;'><summary>Comments </summary><ul> comments will go here </ul </details></div> </div> </div> </div>"
+    childEl.innerHTML = "<div id='discussion-card"+j + "' style=' padding-bottom:60px'> <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/svg/user-1633249.svg' alt='Card image' style='width: 3%;'> Name <div class='card-img text-center'> <h1>" + getPostTitle() + "</h1> <div class='content'><p>" +getPostDetail() + " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px;'><summary>Comments </summary><ul> comments will go here <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'></div></ul </details></div> <button onclick='removePost("+j+")'>Remove Post</button> </div> </div> </div>"
     console.log(childEl)
     document.getElementById("discussion-board").appendChild(childEl);
     j = j + 1
+}
+
+function addDiscussionSection()
+{
+    var section = document.getElementById("section").value;
+    sections.push(section)
+    console.log(sections)
+}
+function updateSections()
+{
+    var parent = document.getElementById("d-navbar")
+    var el = document.createElement('li')
+    el.setAttribute("class", "nav-item")
+    el.innerHTML = "<a class='nav-link' href=''>"+ sections.pop() +"</a>"
+    parent.appendChild(el)
+}
+function addComment(id)
+{
+    let name = "comment-input" + id
+    var comment = document.getElementById(name)
+  
+}
+function removePost(id)
+{
+    let name = "discussion-card" + id
+    var el = document.getElementById(name)
+    console.log(el)
+    el.remove()
+}
+function clearSectionInput()
+{
+    document.getElementById("section").value="";
 }
 function clearFormInput()
 {
@@ -71,6 +114,7 @@ function getPostDetail()
     return document.getElementById("post-detail").value
     
 }
+
 function openForm() 
 {
     document.getElementById("myForm").style.display = "block";
@@ -79,5 +123,9 @@ function openForm()
 function closeForm() 
 {
     document.getElementById("myForm").style.display = "none";
+}
+function getPostsFromDB()
+{
+
 }
 //TO DO: getUser
