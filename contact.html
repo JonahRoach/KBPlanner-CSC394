@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="contact.css" type="text/css">         
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-md bg-light">
+                <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <a class="navbar-brand d-none d-md-block" routerLink="">KB Planner</a>
+    
+    
+                <!-- Only visible when navbar collapses Collapses links Adds a user icon for account -->
+                <a class="navbar-brand ml-auto mr-auto d-md-none" routerLink="">KB Planner</a>
+    
+                <a href="#">
+                    <img class="d-md-none" src="assets/svg/user-1633249.svg" height="30px" width="30px" />
+                </a>
+    
+                <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="group_homepage.html">Home</a>
+                        </li>
+        
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/calendar">Calendar</a>
+                        </li>
+        
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/grades">Grades</a>
+                        </li>
+        
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/discussionBoard">Discussion Board</a>
+                        </li>
+                    </ul>
+                </div>
+    
+                <a class="account d-none d-md-block" href="profile.html">
+                    <img src="assets/svg/user-1633249.svg" width = "30" height = "30" alt="Profile">     
+                </a>
+            </nav>
+        
+        </header>
+
+        <div class= "card" style="padding: 30px; padding-bottom:60px; background-color: cadetblue; max-width: 100%;">
+            <div class="header" style="text-align: center;">
+                <h2>Questions or Concerns? Let Us Help!</h2>
+            </div>
+            <form>
+                <div class="form-group">
+                    <div class="field" style="padding-top:13px; padding-bottom:13px;">
+                        <label for="name" style="color:black; padding-right:74px;">
+                            Name:
+                        </label>
+                        <input type="text" class="form-control" id="name" placeholder = "Enter Name" required="required" />
+                    </div>
+                    
+                    <div class="field" style="padding-top:13px; padding-bottom:13px;">
+                        <label for="email" style="color:black; padding-right: 15px;">
+                            Email Address:
+                        </label>
+                        <input type = "email" class="form-control" id="email" placeholder="Enter Email" required="required" />
+                    </div>
+
+                    <div class="field" style="padding-top:13px; padding-bottom:13px;">
+                        <label for="subject" style="color:black; padding-right:62px;">
+                            Subject:
+                        </label>
+                        <input type="text" class = "form-control" id="subject" placeholder = "Enter Subject" required="required" />
+                    </div>
+        
+                    <div class="field" style="padding-top:13px; padding-bottom:13px;">
+                        <label for="name" style="color:black; padding-right:52px;">
+                            Message:
+                        </label>
+                        <textarea name = "message" id="message" class="form-control" rows="8" cols="25" required="required" placeholder="Message"></textarea>
+                    </div>
+
+                    <div class="sendBtn">
+                        <button type="submit" class="btn btn-light" id="btnContactUs" style="padding: 5px; color:black;  margin:10px;">Send Message</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <footer class = "footer">
+            <nav class="navbar fixed-bottom navbar-light bg-light">
+                <ul class="navbar-nav flex-row m-auto">
+                    <li class="nav-item">
+                        <a routerLink="/about" class="nav-link mr-2">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link ml-2" style = "text-align: right">CONTACT US</a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>    
+    </body>
+</html>
