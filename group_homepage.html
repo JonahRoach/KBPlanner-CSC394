@@ -206,6 +206,21 @@
           </a>
 
         </nav>
+    <div>
+          <!-- Project Nav Start -->
+    <ul class="nav nav-pills nav-fill row justify-content-center" id="d-navbar" >
+            <div id = "projectBox">
+                    <!--<input type = "button" class = "btn btn-danger" id="addTask" value="+" onClick = "">-->
+                        <span id="projectButton" class = "btn btn-primary" >Project 1</span>
+                        <form action="" id="projectForm"  style="display:none;">
+                        
+                            <p> Project Description: </p>
+                            <p>Group Members: </p>
+                            
+                        </form>
+                    </div>   
+    </ul>
+    </div>
     
     </header>
 
@@ -323,12 +338,23 @@
     
     <script>
         
+        $("#projectButton").click(function() {  
+            $("#projectBox form").toggle("slow");
+            return false;
+        });
+        
         $("#button").click(function() {  
             $("#box form").toggle("slow");
             return false;
         });
+
+    
         
         
+        function resetProject()
+        {
+            document.getElementById('projectForm').setAttribute("hidden") = false;
+        }
         function createNewTask(){
             
             let goalName = document.getElementById('goalName').value;
