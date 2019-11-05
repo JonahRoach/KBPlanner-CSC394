@@ -71,12 +71,18 @@
                         <i class="fa fa-user-circle-o fa-5x" aria-hidden="true"></i>
                     </div>
                        
-                    <div class="firstlastname">
+                    <div class="firstlastname" id=firstNameLastName> 
                         <h4>FirstName LastName</h4>
                     </div>
 
-                    <div class="userinfo">
+                    <div class="userinfo" id="email">
                         <p>Email: </p>
+                    </div>
+                    <div class="group" id="group">
+                        <p>Group: </p>
+                    </div>
+                    <div class="points">
+                        <p>Points:</p>
                     </div>
                     <div class="btn3-class" style="padding-top: 50px; padding-left: 190px;">
                         <button type="submit" class="btn" id="btnSignOut">Sign Out</button>
@@ -88,24 +94,10 @@
                     <form>
                         <div class="form-group" style="padding:20px 100px;">
                             <div class="field" style="padding-top:13px; padding-bottom:13px;">
-                                <label for="name" style="color:black; padding-left:5px;">
-                                    Username:
-                                </label>
-                                <input type="text" class="form-control" id="username" placeholder="New Username" required="required"/>
-                             </div>
-                                
-                            <div class="field" style="padding-top:13px; padding-bottom:13px;">
-                                <label for="email" style="color:black; padding-left:10px; margin-right: 27px;">
-                                    Email Address:
-                                </label>
-                                <input type = "email" class="form-control" id="email" placeholder="New Email" required="required" />
-                            </div>
-        
-                            <div class="field" style="padding-top:13px; padding-bottom:13px;">
                                 <label for="subject" style="color:black; padding-left:10px;">
                                     Password:
                                 </label>
-                                <input type="password" class= "form-control" id="subject" placeholder = "New Password" required="required" />
+                                <input type="password" class= "form-control" id="password" placeholder = "New Password" required="required" />
                             </div>
         
                             <div class="btn-class">
