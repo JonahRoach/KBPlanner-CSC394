@@ -1,0 +1,24 @@
+@import "~font-awesome/css/font-awesome.css";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+label{
+    clear: both;
+    float:left;
+}
+.sendBtn{
+    text-align: left;
+    padding-left: 110px;
+}
+    
+.form-control{
+    width:350px;
+}
+
+.form-group{
+    padding-left: 30%; 
+}
