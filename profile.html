@@ -13,53 +13,53 @@
 
     <body>
         <header>
-                <nav class="navbar navbar-expand-md bg-light">
+            <nav class="navbar navbar-expand-md bg-light">
+
+          <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <a class="navbar-brand d-none d-md-block" routerLink="">
+            KB Planner
+          </a>
+
+
+          <!-- Only visible when navbar collapses
+            Collapses links
+            Adds a user icon for account
+          -->
+          <a class="navbar-brand ml-auto mr-auto d-md-none" routerLink="">
+            KB Planner
+          </a>
+
+          <a href="profile.html">
+            <img class="d-md-none" src="assets/svg/user-1633249.svg" height="30px" width="30px" />
+          </a>
+
+          <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href = "group_homepage.html">Home</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href = "DisscusionBoard.html">Discussion Board</a>
+              </li>
+
+            </ul>
+          </div>
+          <a href="login_screen.html" style = "padding-right: 5px;">
+            Log Out
+          </a>
+          <a class="account d-none d-md-block" href="profile.html">
+          
+              <img src="assets/svg/user-1633249.svg" width = "30" height = "30" alt="Profile">
+              
+          </a>
+
+        </nav>
     
-                <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-    
-                <a class="navbar-brand d-none d-md-block" routerLink="">
-                KB Planner
-                </a>
-    
-                <!-- Only visible when navbar collapses Collapses links Adds a user icon for account -->
-                <a class="navbar-brand ml-auto mr-auto d-md-none" routerLink="">
-                KB Planner
-                </a>
-    
-                <a href="#">
-                <img class="d-md-none" src="assets/svg/user-1633249.svg" height="30px" width="30px" />
-                </a>
-    
-                <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="group_homepage.html">Home</a>
-                        </li>
-        
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/calendar">Calendar</a>
-                        </li>
-        
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/grades">Grades</a>
-                        </li>
-        
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/discussionBoard">Discussion Board</a>
-                        </li>
-        
-                    </ul>
-                </div>
-    
-                <a class="account d-none d-md-block" href="profile.html">
-                    <img src="assets/svg/user-1633249.svg" width = "30" height = "30" alt="Profile"> 
-                </a>
-    
-            </nav>
-        
-        </header>
+    </header>
 
         <div class= "card" style=" max-width: 100%;">
             <div class="header" style="text-align: center;">
