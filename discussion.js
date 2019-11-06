@@ -68,13 +68,25 @@ window.onload = function startup()
 function populateDiscussionSections()
 {
     var parent = document.getElementById("d-navbar")
+    var firstEl = true
+    var a = "active"
     for(var i = 0; i < sections.length; i++)
     {
         var el = document.createElement('li')
         el.setAttribute("class", "nav-item")
-        el.innerHTML = "<a class='nav-link' href='#"+sections[i]+"' data-toggle='tab'>"+ sections[i] +"</a>"
-        parent.appendChild(el)
-        sectionlen++
+        if(i == 0)
+        {
+            el.innerHTML = "<a class='nav-link active' href='#"+sections[i]+"' data-toggle='tab'>"+ sections[i] +"</a>"
+            parent.appendChild(el)
+            sectionlen++
+        }
+        else
+        {
+            el.innerHTML = "<a class='nav-link' href='#"+sections[i]+"' data-toggle='tab'>"+ sections[i] +"</a>"
+            parent.appendChild(el)
+            sectionlen++
+        }
+   
     } 
 
 
@@ -95,7 +107,7 @@ function loadPosts()
         //details tag not supported by IE
         childEl.setAttribute("class", "card mb-2")
         childEl.setAttribute("id", name)
-        childEl.innerHTML = "<div id="+ name + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/svg/user-1633249.svg' alt='Card image' style='width: 3%;'>"+ dposts.posts[i].author + " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + dposts.posts[i].title + "</h1> <div class='content'><p>" + dposts.posts[i]["post-detail"] + " </p></div> </div> </div> <div> <small>" + dposts.posts[i].likes+ "</small> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeImage( "+j+");  ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px;'><summary>Comments </summary><ul>" + comments +" <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul </details></div> </div> </div> </div>"
+        childEl.innerHTML = "<div id="+ name + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/svg/user-1633249.svg' alt='Card image' style='width: 3%;'>"+ dposts.posts[i].author + " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + dposts.posts[i].title + "</h1> <div class='content'><p>" + dposts.posts[i]["post-detail"] + " </p></div> </div> </div> <div> <small>" + dposts.posts[i].likes+ "</small> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeImage( "+j+");  ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px; text-decoration:underline;'><summary style='text-decoration:underline;'> Comments </summary><ul>" + comments +" <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul </details></div> </div> </div> </div>"
         console.log(childEl)
         document.getElementById("discussion-board").appendChild(childEl);
         j = j + 1   
@@ -130,7 +142,7 @@ function newPost()
     //details tag not supported by IE
     childEl.setAttribute("class", "card mb-2")
     childEl.setAttribute("id", name)
-    childEl.innerHTML = "<div id='discussion-card"+j + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/svg/user-1633249.svg' alt='Card image' style='width: 3%;'> Name <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + getPostTitle() + "</h1> <div class='content'><p>" +getPostDetail() + " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px;'><summary>Comments </summary><ul> comments will go here <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'></div></ul </details></div> <button onclick='removePost("+j+")'>Remove Post</button> </div> </div> </div>"
+    childEl.innerHTML = "<div id='discussion-card"+j + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/svg/user-1633249.svg' alt='Card image' style='width: 3%;'> Name <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + getPostTitle() + "</h1> <div class='content'><p>" +getPostDetail() + " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px; text-decoration:underline;'><summary>Comments </summary><ul> <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'></div></ul </details></div> <button onclick='removePost("+j+")'>Remove Post</button> </div> </div> </div>"
     console.log(childEl)
     document.getElementById("discussion-board").appendChild(childEl);
     j = j + 1
