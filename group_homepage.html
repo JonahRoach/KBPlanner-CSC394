@@ -125,10 +125,41 @@
             font-size: 30px;
             font-weight: 500;
         }
+        #box {
+          padding:5px;
+          width:200px;
+          z-index:10;
+          position:relative;  
+        }
+        #box form {
+         background:deepskyblue;
+         padding:5px;
+         display:none;
+         position:absolute;
+         top:27px;
+        }
+        #button {
+          width:75px;
+          background:#dc3545;
+          color:#fff;
+          padding:3px 10px;
+          border:1px solid #dc3545;  
+          margin-bottom:15px;  
+          cursor:pointer;
+        }
+        input[type="submit"] {
+          background:white;
+          color:black;
+          border-style: solid;
+          border-color: white;
+          text-align:left;
+          cursor:pointer;
+        }
     </style>
 </head>
 
 <body onload="renderDate()">
+
     <header>
             <nav class="navbar navbar-expand-md bg-light">
 
@@ -149,38 +180,47 @@
             KB Planner
           </a>
 
-          <a href="#">
+          <a href="profile.html">
             <img class="d-md-none" src="assets/svg/user-1633249.svg" height="30px" width="30px" />
           </a>
 
           <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" routerLink="">Home</a>
+                <a class="nav-link" href = "group_homepage.html">Home</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" routerLink="/calendar">Calendar</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/grades">Grades</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/discussionBoard">Discussion Board</a>
+                <a class="nav-link" href = "DisscusionBoard.html">Discussion Board</a>
               </li>
 
             </ul>
           </div>
-
-          <a class="account d-none d-md-block" href="#">
+          <a href="login_screen.html" style = "padding-right: 5px;">
+            Log Out
+          </a>
+          <a class="account d-none d-md-block" href="profile.html">
           
               <img src="assets/svg/user-1633249.svg" width = "30" height = "30" alt="Profile">
               
           </a>
 
         </nav>
+    <div>
+          <!-- Project Nav Start -->
+    <ul class="nav nav-pills nav-fill row justify-content-center" id="d-navbar" >
+            <div id = "projectBox">
+                    <!--<input type = "button" class = "btn btn-danger" id="addTask" value="+" onClick = "">-->
+                        <span id="projectButton" class = "btn btn-primary" >Project 1</span>
+                        <form action="" id="projectForm"  style="display:none;">
+                        
+                            <p> Project Description: </p>
+                            <p>Group Members: </p>
+                            
+                        </form>
+                    </div>   
+    </ul>
+    </div>
     
     </header>
 
@@ -197,12 +237,24 @@
                         
                         <div class = "row justify-content-center">
                             <h3 style = "padding-right: 10px;"> <span class = "badge badge-danger"> TO DO </span> </h3>
-                            <input type = "button" class = "btn btn-danger" id="addTask" value="+" onClick = "">
+                            <div id = "box">
+                            <!--<input type = "button" class = "btn btn-danger" id="addTask" value="+" onClick = "">-->
+                                <span id="button" class = "btn btn-danger">+</span>
+                                <form action="" id="taskForm">
+                                
+                                    <p><input type="text" id='goalName' placeholder="Goal Name"></p>
+                                    <p><input type="text" id = 'descriptionInput' placeholder="Description"></p>
+                                    <p><input type = "date" id= 'dateInput' name = "due_date"></p>
+                                    <p><button onclick="createNewTask(); return false;">Create Task</button></p>
+                            
+                                </form>
+                            </div>    
                         </div>
                     </div>
                     
                     <div class = "card-body">
-                       <h2> <span class = "badge badge-pill badge-danger">Capture data from front end forms</span> </h2>
+                       <div id="toDoCards" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                       
                     </div>
                 </div>
             </div>
@@ -210,12 +262,11 @@
             <!-- IN PROGRESS Area -->
             <div class = "col-4">
                 <div class = "card bg-light text-center" style = "min-height: 300px">
+                    <div class = "card-header"> <span class = "badge badge-warning">IN PROGRESS</span></div>
                     <div class = "card-body">
-                        <h2><span class = "badge badge-pill badge-warning"> Finish MotherShip API functions</span></h2>
-                        <h2> <span class = "badge badge-pill badge-warning"> Uncover the mysteries of connecting to MSSQL </span> </h2>
-                    </div>
+                        <div id="inProgressCards" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
-                    <div class = "card-footer"> <span class = "badge badge-warning">IN PROGRESS</span></div>
+                    </div>
                 </div>
             </div>
 
@@ -226,7 +277,7 @@
                         <h3><span class = "badge badge-success"> DONE </span> </h3>
                     </div>
                     <div class = "card-body">
-                        <h2> <span class = "badge badge-pill badge-success"> Finish presentation for HW4</span> </h2>
+                        <div id="doneCards" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                     </div>
                 </div>
             </div>
@@ -285,6 +336,75 @@
     
     
     <script>
+        
+        $("#projectButton").click(function() {  
+            $("#projectBox form").toggle("slow");
+            return false;
+        });
+        
+        $("#button").click(function() {  
+            $("#box form").toggle("slow");
+            return false;
+        });
+
+    
+        
+        
+        function resetProject()
+        {
+            document.getElementById('projectForm').setAttribute("hidden") = false;
+        }
+        function createNewTask(){
+            
+            let goalName = document.getElementById('goalName').value;
+            let descriptionInput = document.getElementById('descriptionInput').value;
+            
+            let dateInput = document.getElementById('dateInput').value;
+            
+            let divTag = document.createElement('div');
+                divTag.className = 'card text-center';
+
+            let cardBody = document.createElement('div');
+                cardBody.className='card-body';
+      
+            let title = document.createElement('h4');
+                title.innerHTML = goalName;
+                title.className='card-title';
+            let bodyText = document.createElement('div');
+                bodyText.innerHTML = descriptionInput;
+                bodyText.className = 'card-color';
+            let footerText = document.createElement('div');
+                footerText.innerHTML = dateInput;
+                footerText.className = 'card-footer';
+            cardBody.appendChild(title);
+            cardBody.appendChild(bodyText);
+            cardBody.appendChild(footerText);
+            divTag.appendChild(cardBody);
+            divTag.ondrop = "drop(event)";
+            divTag.ondragover = "allowDrop(event)";
+            
+            //divTag.innerHTML = "This is information";
+            document.getElementById('toDoCards').appendChild(divTag);
+            
+            
+            document.getElementById('taskForm').reset();
+
+        }
+        
+        function allowDrop(ev) {
+          ev.preventDefault();
+        }
+
+        function drag(ev) {
+          ev.dataTransfer.setData("Node", ev.target.id);
+        }
+
+        function drop(ev) {
+          ev.preventDefault();
+          var data = ev.dataTransfer.getData("Node");
+          ev.target.appendChild(document.getElementById(data));
+        }
+        
         var dt = new Date();
         //console.log(dt);
         function renderDate() {
@@ -340,6 +460,7 @@
             }
             renderDate();
         }
+
     </script>
 </body>
 
