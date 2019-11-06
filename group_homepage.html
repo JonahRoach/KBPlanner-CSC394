@@ -389,23 +389,39 @@
             let title = document.createElement('h4');
                 title.innerHTML = goalName;
                 title.className='card-title';
-            let moveButton = document.createElement('button');
-                moveButton.innerHTML = ">";
-                console.log(divTag.getAttribute("id"));
-                moveButton.addEventListener("click", function(){
+            
+            var section = divSection;
+            let moveLeftButton = document.createElement('button');
+                moveLeftButton.innerHTML = "<";
+                moveLeftButton.addEventListener("click", function(){
+                    var cardID = divTag.getAttribute("id");
+
+                    if(section == "doneCards"){
+                        document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
+                        section = "inProgressCards";
+                    }
+                    else if(section == "inProgressCards"){
+                    document.getElementById("toDoCards").appendChild(document.getElementById(cardID));
+                    section = "toDoCards";
+                    }
+                })
+            let moveRightButton = document.createElement('button');
+                moveRightButton.innerHTML = ">";
+                //console.log(divTag.getAttribute("id"));
+                moveRightButton.addEventListener("click", function(){
                         //moveCard(divSection, divTag.getAttribute("id"))
-                        var section = divSection;
                         var cardID = divTag.getAttribute("id");
                         console.log(cardID);
-                        
+                        console.log(section);
                         if(section == "toDoCards"){
                             document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
                             section = "inProgressCards";
-                            console.log(section);
+                            
                         }
                         else if(section == "inProgressCards"){
-                            console.log(section);
+                            //console.log('got here');
                             document.getElementById("doneCards").appendChild(document.getElementById(cardID));
+                            section = "doneCards";
                         }
                     
                     }, false);
@@ -415,10 +431,11 @@
                 bodyText.innerHTML = descriptionInput;
                 bodyText.className = 'card-color';
             let footerText = document.createElement('div');
-            
                 footerText.innerHTML = dateOutput;
                 footerText.className = 'card-footer';
-            title.append(moveButton);
+            
+            title.append(moveLeftButton);
+            title.append(moveRightButton);
             cardBody.appendChild(title);
             cardBody.appendChild(assignee);
             cardBody.appendChild(bodyText);
