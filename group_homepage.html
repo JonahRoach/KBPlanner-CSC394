@@ -245,7 +245,7 @@
                                     <p><input type="text" id='goalName' placeholder="Goal Name"></p>
                                     <p><input type="text" id = 'descriptionInput' placeholder="Description"></p>
                                     <p><input type = "date" id= 'dateInput' name = "due_date"></p>
-                                    <p><button onclick="createNewTask(); return false;">Create Task</button></p>
+                                    <p><button onclick="createNewTask('toDoCards'); return false;">Create Task</button></p>
                             
                                 </form>
                             </div>    
@@ -355,7 +355,7 @@
         {
             document.getElementById('projectForm').setAttribute("hidden") = false;
         }
-        function createNewTask(){
+        function createNewTask(divSection){
             
             let goalName = document.getElementById('goalName').value;
             let descriptionInput = document.getElementById('descriptionInput').value;
@@ -385,7 +385,7 @@
             divTag.ondragover = "allowDrop(event)";
             
             //divTag.innerHTML = "This is information";
-            document.getElementById('toDoCards').appendChild(divTag);
+            document.getElementById(divSection).appendChild(divTag);
             
             
             document.getElementById('taskForm').reset();
