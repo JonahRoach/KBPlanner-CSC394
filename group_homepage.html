@@ -358,18 +358,6 @@
             document.getElementById('projectForm').setAttribute("hidden") = false;
         }
 
-        function moveCard(divID, cardID){
-            console.log(divID);
-            var holder;
-            if(divID == "toDoCards"){
-                document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
-            }
-            if(divID == "inProgressCards"){
-                docuemnt.getElementById("doneCards").appendChild(document.getElementById(cardID));
-            }
-        }
-
-
         function createNewTask(divSection){
             
             let goalName = document.getElementById('goalName').value;
@@ -411,8 +399,8 @@
                 moveRightButton.addEventListener("click", function(){
                         //moveCard(divSection, divTag.getAttribute("id"))
                         var cardID = divTag.getAttribute("id");
-                        console.log(cardID);
-                        console.log(section);
+                        //console.log(cardID);
+                        //console.log(section);
                         if(section == "toDoCards"){
                             document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
                             section = "inProgressCards";
@@ -453,18 +441,67 @@
         }
 
         function generateTask(divSection, name, description, dueDate, assignee){
+            if(divSection == "inProgressCards"){
+                divSection = document.getElementById('inProgressCards');
+            }
+            else if(divSection == "doneCards"){
+                divSection = document.getElementById('doneCards');
+            }
+            else if(divSection == "toDoCards"){
+                divSection = document.getElementById('toDocards');
+            }
+
             var assigneeOutput = 'Assigned to: ' + assignee;
             var dateOutput = 'Due Date: ' + dueDate;
 
-            let divTag = document.createElement('div');
+            var divTag = document.createElement('div');
                 divTag.className = 'card text-center';
 
-            let cardBody = document.createElement('div');
+            var cardBody = document.createElement('div');
                 cardBody.className='card-body';
       
-            let title = document.createElement('h3');
+            var title = document.createElement('h4');
                 title.innerHTML = name;
                 title.className='card-title';
+
+            var section = divSection.getAttribute('id');
+            //console.log(section);
+            var moveLeftButton = document.createElement('button');
+                moveLeftButton.innerHTML = "<";
+                moveLeftButton.addEventListener("click", function(){
+                    var cardID = divTag.getAttribute("id");
+
+                    if(section == "doneCards"){
+                        document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
+                        section = "inProgressCards";
+                    }
+                    else if(section == "inProgressCards"){
+                    document.getElementById("toDoCards").appendChild(document.getElementById(cardID));
+                    section = "toDoCards";
+                    }
+                }, false);
+
+                let moveRightButton = document.createElement('button');
+                moveRightButton.innerHTML = ">";
+                //console.log(divTag.getAttribute("id"));
+                moveRightButton.addEventListener("click", function(){
+                        //moveCard(divSection, divTag.getAttribute("id"))
+                        var cardID = divTag.getAttribute("id");
+                        console.log(cardID);
+                        //console.log(section);
+                        if(section == "toDoCards"){
+                            document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
+                            section = "inProgressCards";
+                            
+                        }
+                        else if(section == "inProgressCards"){
+                            //console.log('got here');
+                            document.getElementById("doneCards").appendChild(document.getElementById(cardID));
+                            section = "doneCards";
+                        }
+                    
+                    }, false);
+            
             let assigneeSection = document.createElement('h6');
                 assigneeSection.innerHTML = assigneeOutput;
             let bodyText = document.createElement('div');
@@ -474,6 +511,9 @@
             
                 footerText.innerHTML = dateOutput;
                 footerText.className = 'card-footer';
+            
+            title.append(moveLeftButton);
+            title.append(moveRightButton);
             cardBody.appendChild(title);
             cardBody.appendChild(assigneeSection);
             cardBody.appendChild(bodyText);
@@ -482,7 +522,7 @@
             divTag.ondrop = "drop(event)";
             divTag.ondragover = "allowDrop(event)";
 
-            document.getElementById(divSection).appendChild(divTag);
+            divSection.appendChild(divTag);
         }
 
         
