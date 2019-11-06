@@ -244,7 +244,8 @@
                                 
                                     <p><input type="text" id='goalName' placeholder="Goal Name"></p>
                                     <p><input type="text" id = 'descriptionInput' placeholder="Description"></p>
-                                    <p><input type = "date" id= 'dateInput' name = "due_date"></p>
+                                    <p><input type = "text" id = 'assigneeInput' placeholder="Assigned Member Name"></p>
+                                    <p>Due Date:<input type = "date" id= 'dateInput'></p>
                                     <p><button onclick="createNewTask('toDoCards'); return false;">Create Task</button></p>
                             
                                 </form>
@@ -359,9 +360,12 @@
             
             let goalName = document.getElementById('goalName').value;
             let descriptionInput = document.getElementById('descriptionInput').value;
-            
+            let assigneeInput = document.getElementById('assigneeInput').value;
+            var assigneeOutput = 'Assigned to: ' + assigneeInput;
+
             let dateInput = document.getElementById('dateInput').value;
-            
+            var dateOutput = 'Due Date: ' + dateInput;
+
             let divTag = document.createElement('div');
                 divTag.className = 'card text-center';
 
@@ -371,13 +375,17 @@
             let title = document.createElement('h4');
                 title.innerHTML = goalName;
                 title.className='card-title';
+            let assignee = document.createElement('h6');
+                assignee.innerHTML = assigneeOutput;
             let bodyText = document.createElement('div');
                 bodyText.innerHTML = descriptionInput;
                 bodyText.className = 'card-color';
             let footerText = document.createElement('div');
-                footerText.innerHTML = dateInput;
+            
+                footerText.innerHTML = dateOutput;
                 footerText.className = 'card-footer';
             cardBody.appendChild(title);
+            cardBody.appendChild(assignee);
             cardBody.appendChild(bodyText);
             cardBody.appendChild(footerText);
             divTag.appendChild(cardBody);
@@ -391,6 +399,40 @@
             document.getElementById('taskForm').reset();
 
         }
+
+        function generateTask(divSection, name, description, dueDate, assignee){
+            var assigneeOutput = 'Assigned to: ' + assignee;
+            var dateOutput = 'Due Date: ' + dueDate;
+
+            let divTag = document.createElement('div');
+                divTag.className = 'card text-center';
+
+            let cardBody = document.createElement('div');
+                cardBody.className='card-body';
+      
+            let title = document.createElement('h3');
+                title.innerHTML = name;
+                title.className='card-title';
+            let assigneeSection = document.createElement('h6');
+                assigneeSection.innerHTML = assigneeOutput;
+            let bodyText = document.createElement('div');
+                bodyText.innerHTML = description;
+                bodyText.className = 'card-color';
+            let footerText = document.createElement('div');
+            
+                footerText.innerHTML = dateOutput;
+                footerText.className = 'card-footer';
+            cardBody.appendChild(title);
+            cardBody.appendChild(assigneeSection);
+            cardBody.appendChild(bodyText);
+            cardBody.appendChild(footerText);
+            divTag.appendChild(cardBody);
+            divTag.ondrop = "drop(event)";
+            divTag.ondragover = "allowDrop(event)";
+
+            document.getElementById(divSection).appendChild(divTag);
+        }
+
         
         function allowDrop(ev) {
           ev.preventDefault();
@@ -406,6 +448,7 @@
           ev.target.appendChild(document.getElementById(data));
         }
         
+
         var dt = new Date();
         //console.log(dt);
         function renderDate() {
