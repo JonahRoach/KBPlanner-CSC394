@@ -448,7 +448,7 @@
                 divSection = document.getElementById('doneCards');
             }
             else if(divSection == "toDoCards"){
-                divSection = document.getElementById('toDocards');
+                divSection = document.getElementById('toDoCards');
             }
 
             var assigneeOutput = 'Assigned to: ' + assignee;
@@ -456,6 +456,7 @@
 
             var divTag = document.createElement('div');
                 divTag.className = 'card text-center';
+                divTag.setAttribute("id", "card-"+idCount++);
 
             var cardBody = document.createElement('div');
                 cardBody.className='card-body';
