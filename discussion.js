@@ -43,6 +43,7 @@ var dposts = {
 
 var i = 0 //global for photos
 var j = 0 //gobal for posts
+var x = 1 //for hiding discussion sections
 var sectionlen = 0
 const maxSectionLen = 5
 var userId = 0
@@ -62,8 +63,8 @@ var original = document.getElementById("discussion-card")
 
 parentEl = document.getElementById('discussion-board');
 
-
-
+//this is just some temp code that hides the posts when you switch tabs, doesnt actually work
+$(document).on('shown.bs.tab', function (e) { if(x == 1) {$("#d-content").hide(); x--}else{ $("#d-content").show(); x++ } });
 
 window.onload = function startup()
 {
@@ -79,6 +80,8 @@ function populateDiscussionSections()
     for(var i = 0; i < sections.length; i++)
     {
         var el = document.createElement('li')
+        var board = document.createElement("div")
+        board.setAttribute("id", sections[i])
         el.setAttribute("class", "nav-item")
         if(i == 0)
         {
@@ -95,6 +98,10 @@ function populateDiscussionSections()
    
     } 
 
+
+}
+function loadDiscussionInTab()
+{
 
 }
 function loadPostsFromDB()
@@ -120,7 +127,7 @@ function loadPosts()
         childEl.setAttribute("id", name)
         childEl.innerHTML = "<div id="+ name + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/svg/user-1633249.svg' alt='Card image' style='width: 3%;'>"+ dposts.posts[i].author + " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + dposts.posts[i].title + "</h1> <div class='content'><p>" + dposts.posts[i]["post-detail"] + " </p></div> </div> </div> <div> <small></small> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeImage( "+j+");  ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px; text-decoration:underline;'><summary style='text-decoration:underline;'> Comments </summary><ul id='commentContent" + j+ "'>" + comments +"</ul> <div ><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button id='commentButton' type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul> </details></div> </div> </div> </div>"
         console.log(childEl)
-        document.getElementById("discussion-board").appendChild(childEl);
+        document.getElementById("d-content").appendChild(childEl);
         j = j + 1
    
          
@@ -143,10 +150,7 @@ function changeImage(id)
     //dposts.posts[id].likes++
     document.getElementById("discussion-card"+id)
 }
-function changeLikes()
-{
 
-}
 function newPost()
 //code to add a new post
 {
@@ -155,9 +159,10 @@ function newPost()
     //details tag not supported by IE
     childEl.setAttribute("class", "card mb-2")
     childEl.setAttribute("id", name)
-    childEl.innerHTML = "<div id='discussion-card"+j + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/svg/user-1633249.svg' alt='Card image' style='width: 3%;'> Name <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + getPostTitle() + "</h1> <div class='content'><p>" +getPostDetail() + " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px; text-decoration:underline;'><summary>Comments </summary><ul> <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'></div></ul </details></div> <button onclick='removePost("+j+")'>Remove Post</button> </div> </div> </div>"
-    console.log(childEl)
-    document.getElementById("discussion-board").appendChild(childEl);
+    childEl.innerHTML = "<div id='discussion-card"+j + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/svg/user-1633249.svg' alt='Card image' style='width: 3%;'>" + userId + " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + getPostTitle() + "</h1> <div class='content'><p>" +getPostDetail() + " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px; text-decoration:underline;'><summary>Comments </summary><ul id='commentContent" + j+ "'></ul> <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button id='commentButton' type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul> </details></div> <button onclick='removePost("+j+")'>Remove Post</button> </div> </div> </div>"
+    dposts.posts.push({"postsId": j, "author": userId, "usersId":userId,"title": getPostTitle(),"post-detail":getPostDetail(),"likes":0,"comments":[]})
+    console.log(dposts)
+    document.getElementById("d-content").appendChild(childEl);
     j = j + 1
 }
 
@@ -191,6 +196,7 @@ function addComment(id)
 {
     let name = "comment-input" + id
     var commentEl = document.getElementById(name).value
+    document.getElementById(name).value = ""
     let postcomments = "commentContent" + id
     console.log(postcomments)
     dposts.posts[id].comments.push({"author": userId, "comment": commentEl})
@@ -198,7 +204,6 @@ function addComment(id)
     let comment = userId+": " + commentEl + "\n"
     console.log(commentSection)
     $("#"+postcomments).append(comment + "<br></br>")
-    $("#"+ commentEl).val("")
     console.log(dposts.posts[id].comments)
   
 }
