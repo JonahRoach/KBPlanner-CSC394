@@ -20,14 +20,35 @@ label{
     margin-top: 10px;
 }
 
-.firstlastname{
-    margin-left: 90px;
-    padding-left: 80px;
-    padding-top: 20px;
+.firstname{
+    display: inline-block;
+    padding-left: 35px;
+    margin-top: 20px;
+}
+
+.lastname{
+    display: inline-block;
+    margin-left: 10px; 
+    margin-top:20px;
 }
 
 .form-control{
     width:300px;
+}
+
+.group {
+    clear: both;
+    margin-left: 60px;
+    margin-top: 40px;
+    padding-left: 40px;
+}
+
+.points{
+    clear: both;
+    margin-left: 60px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    padding-left: 40px;
 }
 
 .userIcon{
@@ -48,15 +69,6 @@ label{
     color:rgb(29, 104, 239);
     margin:5px;
     padding: 5px 20px; 
-}
-
-#btnSignOut{
-    background-color: white;
-    border-color: white;
-    color:rgb(29, 104, 239);
-    margin:5px;
-    padding: 5px 10px; 
-    text-decoration: underline;
 }
 
 #btnUpdate{
