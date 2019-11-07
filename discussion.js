@@ -39,6 +39,8 @@ var dposts = {
   }
 
 
+
+
 var i = 0 //global for photos
 var j = 0 //gobal for posts
 var sectionlen = 0
@@ -54,10 +56,19 @@ var images =
 var sections = ["General", "Brainstorming"]
 
 
+
 var original = document.getElementById("discussion-card")
 
 
 parentEl = document.getElementById('discussion-board');
+
+
+
+$('#commentButton').click(function()
+{
+    $('#commentContent').before(JSON.stringify(dposts.posts[i].comments))
+});
+
 
 window.onload = function startup()
 {
@@ -97,6 +108,7 @@ function loadPosts()
     {
         
         var comments =""
+      
         for(var x = 0; x < dposts.posts[i].comments.length; x++) //get comments from posts
         {
             comments = comments + dposts.posts[i].comments[x].author + ": " + dposts.posts[i].comments[x].detail + "<br></br>"
@@ -107,10 +119,17 @@ function loadPosts()
         //details tag not supported by IE
         childEl.setAttribute("class", "card mb-2")
         childEl.setAttribute("id", name)
-        childEl.innerHTML = "<div id="+ name + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/svg/user-1633249.svg' alt='Card image' style='width: 3%;'>"+ dposts.posts[i].author + " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + dposts.posts[i].title + "</h1> <div class='content'><p>" + dposts.posts[i]["post-detail"] + " </p></div> </div> </div> <div> <small>" + dposts.posts[i].likes+ "</small> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeImage( "+j+");  ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px; text-decoration:underline;'><summary style='text-decoration:underline;'> Comments </summary><ul>" + comments +" <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul </details></div> </div> </div> </div>"
+        childEl.innerHTML = "<div id="+ name + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/svg/user-1633249.svg' alt='Card image' style='width: 3%;'>"+ dposts.posts[i].author + " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + dposts.posts[i].title + "</h1> <div class='content'><p>" + dposts.posts[i]["post-detail"] + " </p></div> </div> </div> <div> <small></small> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeImage( "+j+");  ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px; text-decoration:underline;'><summary style='text-decoration:underline;'> Comments </summary><ul>" + comments +" <div id='commentContent'><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button id='commentButton' type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul> </details></div> </div> </div> </div>"
+        
+        $('#commentButton').click(function(comments)
+        {
+            $('#commentContent').before(comments)
+        });
         console.log(childEl)
         document.getElementById("discussion-board").appendChild(childEl);
-        j = j + 1   
+        j = j + 1
+   
+         
     }
 }
 
@@ -118,16 +137,16 @@ function changeImage(id)
 {
 
     i = i + 1;
-    var inital = dposts.posts[id].likes
+   // var inital = dposts.posts[id].likes
     thumbid = "thumb" + id
     document.getElementById(thumbid).src = images[i];
     if (i > images.length -1)
     {
         i = 0;
         document.getElementById(thumbid).src = images[i];
-        dposts.posts[id].likes = dposts.posts[id].likes- 2
+       // dposts.posts[id].likes = dposts.posts[id].likes- 2
     }
-    dposts.posts[id].likes++
+    //dposts.posts[id].likes++
     document.getElementById("discussion-card"+id)
 }
 function changeLikes()
@@ -179,7 +198,7 @@ function addComment(id)
     let name = "comment-input" + id
     var commentEl = document.getElementById(name).value
 
-    dposts.posts[id].comments.push(commentEl)
+    dposts.posts[id].comments.push({"author": userId, "comment": commentEl})
     console.log(dposts.posts[id].comments)
   
 }
