@@ -160,7 +160,7 @@ function newPost()
     childEl.setAttribute("class", "card mb-2")
     childEl.setAttribute("id", name)
     childEl.innerHTML = "<div id='discussion-card"+j + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/svg/user-1633249.svg' alt='Card image' style='width: 3%;'>" + userId + " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + getPostTitle() + "</h1> <div class='content'><p>" +getPostDetail() + " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px; text-decoration:underline;'><summary>Comments </summary><ul id='commentContent" + j+ "'></ul> <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button id='commentButton' type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul> </details></div> <button onclick='removePost("+j+")'>Remove Post</button> </div> </div> </div>"
-    dposts.posts.push({"postsId": j, "author": userId, "usersId":userId,"title": getPostTitle(),"post-detail":getPostDetail(),"likes":0,"comments":[]})
+    dposts.posts.push({"postId": j, "author": userId, "usersId":userId,"title": getPostTitle(),"post-detail":getPostDetail(),"likes":0,"comments":[]})
     console.log(dposts)
     document.getElementById("d-content").appendChild(childEl);
     j = j + 1
@@ -211,6 +211,7 @@ function removePost(id)
 {
     let name = "discussion-card" + id
     var el = document.getElementById(name)
+    dposts.posts.pop()
     console.log(el)
     el.remove()
 }
