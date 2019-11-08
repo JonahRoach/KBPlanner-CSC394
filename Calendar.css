@@ -325,7 +325,7 @@ input.add-event-edit:-ms-input-placeholder {
   color: #222;
 }
 .cview__month-last:hover,.cview__month-next:hover{
-  color: #fff;
+  color: #000;
 }
 
 .cview__month-current{
