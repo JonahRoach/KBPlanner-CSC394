@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Test Add Student to Roster Form</title>
+  </head>
+  <body>
+      <div id = "formShadow" class = "shadow-lg p-3 mb5 bg-white rounded">
+      <div id = "formContainer" class = "card rounded-0" style = "width: 22rem; align-content: center;">
+      <form class="form-horizontal">
+          <fieldset>
+
+
+<!-- change col-sm-N to reflect how you would like your column spacing (http://getbootstrap.com/css/#forms-control-sizes) -->
+
+
+<!-- Form Name -->
+            <div class = "card-header">
+                <h3 class = "mb-0"> Add Student to Group</h3>
+            </div>
+
+            <!-- Text input http://getbootstrap.com/css/#forms -->
+            <div class = "card-body">
+            <div class="form-group">
+              <label for="textinput" class="control-label col">Student's Email:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="textinput" placeholder="Student Email">
+
+              </div>
+            </div>
+            <!-- Fuel UX Select http://getfuelux.com/javascript.html#selectlist -->
+            <div class="form-group">
+              <label class="control-label col" for="roleInput">Select Group:</label>
+              <div class="controls col-sm-10">
+                <select id="roleInput" name="roleInput" class="form-control" required="">
+                  <option>Group 1</option>
+                  <option>Group 2</option>
+                  <option>Group 3</option>
+                </select>
+
+              </div>
+            </div>
+
+            <!-- Button http://getbootstrap.com/css/#buttons -->
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="singlebutton"></label>
+              <div class="text-right col-sm-10">
+                <button type="button" id="singlebutton" name="singlebutton" class="btn btn-primary" aria-label="">Add to Roster</button>
+
+              </div>
+            </div>
+
+            </div>
+          </fieldset>
+      </form>
+          </div>
+      </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+  
