@@ -444,7 +444,7 @@
 
         }
 
-        function generateTask(divSection, name, description, dueDate, assignee){
+        function generateTask(divSection, name, description, dueDate, assignee, goal_id){
             if(divSection == "inProgressCards"){
                 divSection = document.getElementById('inProgressCards');
             }
@@ -460,10 +460,7 @@
 
             var divTag = document.createElement('div');
                 divTag.className = 'card text-center';
-                var dateGenerated = new Date();
-                var dateGenerated = dateGenerated.getTime();
-                var stringDate = dateGenerated.toString();
-                divTag.setAttribute("id", stringDate);
+                divTag.setAttribute("id", goal_id);
 
             var cardBody = document.createElement('div');
                 cardBody.className='card-body';
