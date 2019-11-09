@@ -69,7 +69,7 @@ var roster =
    ] 
 }
 
-var i = 0; //table element ID
+var j = 0; //table element ID
 
 $("#button").click(function() {  
         $("#box form").toggle("slow");
@@ -96,7 +96,9 @@ function populateRoster()
         el.innerHTML= "<td>" + roster.students[i].name + "</td> <td>" + roster.students[i].email + "</td> <td>" + roster.students[i].groupNum + "</td> <td>" + roster.students[i].projectName + "</td><td>" + roster.students[i].points ;
         parent.appendChild(el)
         el.append(removeButton)
+        j++
     }
+
 }
 function removeFromTable(id)
 {
@@ -115,14 +117,16 @@ function addStudentToRoster()
     roster.students.push({"name":name, "email":email, "groupNum": group, "projectName":project,"points":0})
     
     var el = document.createElement("tr")
-    el.setAttribute("id", "tableEl"+i)
+    el.setAttribute("id", "tableEl"+j)
     var removeButton = document.createElement("button")
-    removeButton.setAttribute("onclick", "removeFromTable(" + i + ");")
+    removeButton.setAttribute("onclick", "removeFromTable(" + j + ");")
     removeButton.innerHTML = "Remove" 
 
     el.innerHTML= "<td>" + name + "</td> <td>" + email + "</td> <td>" + group + "</td> <td>" + project + "</td><td>" + "0" ;
     parent.appendChild(el)
     el.append(removeButton)
+    console.log(parent)
+    console.log(el)
 
 }
 function showForm()
