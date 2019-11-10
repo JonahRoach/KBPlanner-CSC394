@@ -116,3 +116,34 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
+
+// Pie Chart Example
+var ctx = document.getElementById("myPieChart");
+var myPieChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: ["Bronze", "Silver", "Gold", "Platinum", "Elite"],
+    datasets: [{
+      data: [11,6,3,3,2],
+      backgroundColor: ['#331900', '#808080', '#FF8000',"#B3FFFF","#FF5500"],
+      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+  },
+});
