@@ -126,12 +126,17 @@ function addStudentToRoster()
     var el = document.createElement("tr")
     el.setAttribute("id", "tableEl"+j)
     var removeButton = document.createElement("button")
+    var saveButton = document.createElement("button")
+    saveButton.innerHTML = "Save"
+    saveButton.setAttribute("onclick", "saveButton();")
+    saveButton.setAttribute("contenteditable", "false")
     removeButton.setAttribute("onclick", "removeFromTable(" + j + ");")
     removeButton.innerHTML = "Remove" 
 
     el.innerHTML= "<td>" + name + "</td> <td>" + email + "</td> <td>" + group + "</td> <td>" + project + "</td><td>" + "0" ;
     parent.appendChild(el)
     el.append(removeButton)
+    el.append(saveButton)
     console.log(parent)
     console.log(el)
 
