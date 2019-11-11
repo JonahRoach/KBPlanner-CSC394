@@ -50,10 +50,21 @@ var sectionlen = 0
 const maxSectionLen = 5
 var userId = 0
 
-var images = 
+var thumbimages = 
 [
 "assets/svg/thumbs-up.png",
 "assets/svg/blue-thumb.png"
+]
+var ximages = 
+[
+    "assets/png/xmark.png",
+    "assets/png/xmarkred.png"
+
+]
+var qimages = 
+[
+    "assets/png/qmark.png",
+    "assets/png/qmarkorange.png",  
 ]
 
 var sections = ["General", "Brainstorming"]
@@ -127,7 +138,7 @@ function loadPosts()
         //details tag not supported by IE
         childEl.setAttribute("class", "card mb-2")
         childEl.setAttribute("id", name)
-        childEl.innerHTML = "<div id="+ name + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/png/"+dposts.posts[i].rank+".png' alt='Card image' style='width: 3%;'> "+ dposts.posts[i].author + " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + dposts.posts[i].title + "</h1> <div class='content'><p>" + dposts.posts[i]["post-detail"] + " </p></div> </div> </div> <div> <small></small> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeImage( "+j+");  ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px; text-decoration:underline;'><summary style='text-decoration:underline;'> Comments </summary><ul id='commentContent" + j+ "'>" + comments +"</ul> <div ><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button id='commentButton' type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul> </details></div> </div> </div> </div>"
+        childEl.innerHTML = "<div id="+ name + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/png/"+dposts.posts[i].rank+".png' alt='Card image' style='width: 3%;'> "+ dposts.posts[i].author + " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + dposts.posts[i].title + "</h1> <div class='content'><p>" + dposts.posts[i]["post-detail"] + " </p></div> </div> </div> <div> <small></small> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeThumbImage( "+j+");  ' style='width: 2%; padding-left:9px; '> <img id='xmark" + j + "' onclick ='changeXImage("+j+")'src='assets/png/xmark.png' style='max-height:3%; max-width:2.5%;'><img id='qmark" + j + "' onclick ='changeQImage("+j+")'src='assets/png/qmark.png' style='max-height:3%; max-width:3%;'><details style='padding-left:9px; text-decoration:underline;'><summary style='text-decoration:underline;'> Comments </summary><ul id='commentContent" + j+ "'>" + comments +"</ul> <div ><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button id='commentButton' type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul> </details></div> </div> </div> </div>"
         console.log(childEl)
         document.getElementById("d-content").appendChild(childEl);
         j = j + 1
@@ -136,21 +147,42 @@ function loadPosts()
     }
 }
 
-function changeImage(id) 
+function changeThumbImage(id) 
 {
 
     i = i + 1;
    // var inital = dposts.posts[id].likes
     thumbid = "thumb" + id
-    document.getElementById(thumbid).src = images[i];
-    if (i > images.length -1)
+    document.getElementById(thumbid).src = thumbimages[i];
+    if (i > thumbimages.length -1)
     {
         i = 0;
-        document.getElementById(thumbid).src = images[i];
+        document.getElementById(thumbid).src = thumbimages[i];
        // dposts.posts[id].likes = dposts.posts[id].likes- 2
     }
     //dposts.posts[id].likes++
-    document.getElementById("discussion-card"+id)
+}
+function changeXImage(id)
+{
+    i = i + 1
+    xid = "xmark" + id
+    document.getElementById(xid).src = ximages[i];
+    if(i > ximages.length - 1)
+    {
+        i = 0;
+        document.getElementById(xid).src = ximages[i];
+    }
+}
+function changeQImage(id)
+{
+    i = i + 1
+    qid = "qmark" + id
+    document.getElementById(qid).src = qimages[i];
+    if(i > qimages.length - 1)
+    {
+        i = 0;
+        document.getElementById(qid).src = qimages[i];
+    }
 }
 
 function newPost()
@@ -161,7 +193,7 @@ function newPost()
     //details tag not supported by IE
     childEl.setAttribute("class", "card mb-2")
     childEl.setAttribute("id", name)
-    childEl.innerHTML = "<div id='discussion-card"+j + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/png/bronze.png' alt='Card image' style='width: 3%;'> " + userId + " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + getPostTitle() + "</h1> <div class='content'><p>" +getPostDetail() + " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'><details style='padding-left:9px; text-decoration:underline;'><summary>Comments </summary><ul id='commentContent" + j+ "'></ul> <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button id='commentButton' type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul> </details></div> <button onclick='removePost("+j+")'>Remove Post</button> </div> </div> </div>"
+    childEl.innerHTML = "<div id='discussion-card"+j + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/png/bronze.png' alt='Card image' style='width: 3%;'> " + userId + " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + getPostTitle() + "</h1> <div class='content'><p>" +getPostDetail() + " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeThumbImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'> <img id='xmark" + j + "' onclick ='changeXImage("+j+")'src='assets/png/xmark.png' style='max-height:3%; max-width:2.5%;'><img id='qmark" + j + "' onclick ='changeQImage("+j+")'src='assets/png/qmark.png' style='max-height:3%; max-width:3%;'><details style='padding-left:9px; text-decoration:underline;'><summary>Comments </summary><ul id='commentContent" + j+ "'></ul> <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button id='commentButton' type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul> </details></div> <button onclick='removePost("+j+")'>Remove Post</button> </div> </div> </div>"
     dposts.posts.push({"postId": j, "author": userId, "usersId":userId,"title": getPostTitle(),"post-detail":getPostDetail(),"likes":0,"comments":[]})
     console.log(dposts)
     document.getElementById("d-content").appendChild(childEl);
