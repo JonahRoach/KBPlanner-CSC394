@@ -244,8 +244,9 @@
                                 
                                     <p><input type="text" id='goalName' placeholder="Goal Name"></p>
                                     <p><input type="text" id = 'descriptionInput' placeholder="Description"></p>
-                                    <p><input type = "date" id= 'dateInput' name = "due_date"></p>
-                                    <p><button onclick="createNewTask(); return false;">Create Task</button></p>
+                                    <p><input type = "text" id = 'assigneeInput' placeholder="Assigned Member Name"></p>
+                                    <p>Due Date:<input type = "date" id= 'dateInput'></p>
+                                    <p><button onclick="createNewTask('toDoCards'); return false;">Create Task</button></p>
                             
                                 </form>
                             </div>    
@@ -262,11 +263,12 @@
             <!-- IN PROGRESS Area -->
             <div class = "col-4">
                 <div class = "card bg-light text-center" style = "min-height: 300px">
-                    <div class = "card-header"> <span class = "badge badge-warning">IN PROGRESS</span></div>
                     <div class = "card-body">
                         <div id="inProgressCards" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
                     </div>
+
+                    <div class = "card-footer"> <span class = "badge badge-warning">IN PROGRESS</span></div>
                 </div>
             </div>
 
@@ -336,7 +338,8 @@
     
     
     <script>
-        
+
+        var idCount = 0;
         $("#projectButton").click(function() {  
             $("#projectBox form").toggle("slow");
             return false;
@@ -354,29 +357,79 @@
         {
             document.getElementById('projectForm').setAttribute("hidden") = false;
         }
-        function createNewTask(){
+
+        function createNewTask(divSection){
             
             let goalName = document.getElementById('goalName').value;
             let descriptionInput = document.getElementById('descriptionInput').value;
-            
+            let assigneeInput = document.getElementById('assigneeInput').value;
+            var assigneeOutput = 'Assigned to: ' + assigneeInput;
+
             let dateInput = document.getElementById('dateInput').value;
-            
+            var dateOutput = 'Due Date: ' + dateInput;
+
             let divTag = document.createElement('div');
                 divTag.className = 'card text-center';
-
+                var dateGenerated = new Date();
+                var dateGenerated = dateGenerated.getTime();
+                var stringDate = dateGenerated.toString();
+                divTag.setAttribute("id", stringDate);
+            
             let cardBody = document.createElement('div');
                 cardBody.className='card-body';
       
             let title = document.createElement('h4');
                 title.innerHTML = goalName;
                 title.className='card-title';
+            
+            var section = divSection;
+            let moveLeftButton = document.createElement('button');
+                moveLeftButton.innerHTML = "<";
+                moveLeftButton.addEventListener("click", function(){
+                    var cardID = divTag.getAttribute("id");
+
+                    if(section == "doneCards"){
+                        document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
+                        section = "inProgressCards";
+                    }
+                    else if(section == "inProgressCards"){
+                    document.getElementById("toDoCards").appendChild(document.getElementById(cardID));
+                    section = "toDoCards";
+                    }
+                })
+            let moveRightButton = document.createElement('button');
+                moveRightButton.innerHTML = ">";
+                console.log(divTag.getAttribute("id"));
+                moveRightButton.addEventListener("click", function(){
+                        //moveCard(divSection, divTag.getAttribute("id"))
+                        var cardID = divTag.getAttribute("id");
+                        //console.log(cardID);
+                        //console.log(section);
+                        if(section == "toDoCards"){
+                            document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
+                            section = "inProgressCards";
+                            
+                        }
+                        else if(section == "inProgressCards"){
+                            //console.log('got here');
+                            document.getElementById("doneCards").appendChild(document.getElementById(cardID));
+                            section = "doneCards";
+                        }
+                    
+                    }, false);
+            let assignee = document.createElement('h6');
+                assignee.innerHTML = assigneeOutput;
             let bodyText = document.createElement('div');
                 bodyText.innerHTML = descriptionInput;
                 bodyText.className = 'card-color';
             let footerText = document.createElement('div');
-                footerText.innerHTML = dateInput;
+                footerText.innerHTML = dateOutput;
                 footerText.className = 'card-footer';
+            
+            title.append(moveLeftButton);
+            title.append(moveRightButton);
             cardBody.appendChild(title);
+            cardBody.appendChild(assignee);
             cardBody.appendChild(bodyText);
             cardBody.appendChild(footerText);
             divTag.appendChild(cardBody);
@@ -384,12 +437,99 @@
             divTag.ondragover = "allowDrop(event)";
             
             //divTag.innerHTML = "This is information";
-            document.getElementById('toDoCards').appendChild(divTag);
+            document.getElementById(divSection).appendChild(divTag);
             
             
             document.getElementById('taskForm').reset();
 
         }
+
+        function generateTask(divSection, name, description, dueDate, assignee, goal_id){
+            if(divSection == "inProgressCards"){
+                divSection = document.getElementById('inProgressCards');
+            }
+            else if(divSection == "doneCards"){
+                divSection = document.getElementById('doneCards');
+            }
+            else if(divSection == "toDoCards"){
+                divSection = document.getElementById('toDoCards');
+            }
+
+            var assigneeOutput = 'Assigned to: ' + assignee;
+            var dateOutput = 'Due Date: ' + dueDate;
+
+            var divTag = document.createElement('div');
+                divTag.className = 'card text-center';
+                divTag.setAttribute("id", goal_id);
+
+            var cardBody = document.createElement('div');
+                cardBody.className='card-body';
+      
+            var title = document.createElement('h4');
+                title.innerHTML = name;
+                title.className='card-title';
+
+            var section = divSection.getAttribute('id');
+            //console.log(section);
+            var moveLeftButton = document.createElement('button');
+                moveLeftButton.innerHTML = "<";
+                moveLeftButton.addEventListener("click", function(){
+                    var cardID = divTag.getAttribute("id");
+
+                    if(section == "doneCards"){
+                        document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
+                        section = "inProgressCards";
+                    }
+                    else if(section == "inProgressCards"){
+                    document.getElementById("toDoCards").appendChild(document.getElementById(cardID));
+                    section = "toDoCards";
+                    }
+                }, false);
+
+                let moveRightButton = document.createElement('button');
+                moveRightButton.innerHTML = ">";
+                //console.log(divTag.getAttribute("id"));
+                moveRightButton.addEventListener("click", function(){
+                        //moveCard(divSection, divTag.getAttribute("id"))
+                        var cardID = divTag.getAttribute("id");
+                        //console.log(cardID);
+                        //console.log(section);
+                        if(section == "toDoCards"){
+                            document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
+                            section = "inProgressCards";
+                            
+                        }
+                        else if(section == "inProgressCards"){
+                            //console.log('got here');
+                            document.getElementById("doneCards").appendChild(document.getElementById(cardID));
+                            section = "doneCards";
+                        }
+                    
+                    }, false);
+            
+            let assigneeSection = document.createElement('h6');
+                assigneeSection.innerHTML = assigneeOutput;
+            let bodyText = document.createElement('div');
+                bodyText.innerHTML = description;
+                bodyText.className = 'card-color';
+            let footerText = document.createElement('div');
+            
+                footerText.innerHTML = dateOutput;
+                footerText.className = 'card-footer';
+            
+            title.append(moveLeftButton);
+            title.append(moveRightButton);
+            cardBody.appendChild(title);
+            cardBody.appendChild(assigneeSection);
+            cardBody.appendChild(bodyText);
+            cardBody.appendChild(footerText);
+            divTag.appendChild(cardBody);
+            divTag.ondrop = "drop(event)";
+            divTag.ondragover = "allowDrop(event)";
+
+            divSection.appendChild(divTag);
+        }
+
         
         function allowDrop(ev) {
           ev.preventDefault();
@@ -405,6 +545,7 @@
           ev.target.appendChild(document.getElementById(data));
         }
         
+
         var dt = new Date();
         //console.log(dt);
         function renderDate() {

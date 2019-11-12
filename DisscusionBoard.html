@@ -78,7 +78,7 @@
     </ul>
     <!--Discussion Nav End-->
 
-    <div id="d-content" >
+    <div class="tab-content" id="d-content">
 
     </div>
     <!-- Gets added by JS-->
@@ -92,11 +92,14 @@
         <form action="javascript:newPost(); getPostTitle(); getPostDetail(); clearFormInput();" class="form-container">
           <h1></h1>
       
+          <label for="section"><b>Enter Discussion Section</b></label>
+          <input type="text" placeholder="Section Name" id="section-post" required>
+
           <label for="title"><b>Enter a Title</b></label>
           <input type="text" placeholder="Post Title" id="title-post" required>
       
-          <label for="psw"><b>Post Detail</b></label>
-          <input type="text" placeholder="Post Detail" id="post-detail" required>
+          <label for="psw"><b>Enter Post Description</b></label>
+          <input type="text" placeholder="Post Description" id="post-detail" required>
       
           <button type="submit"  class="btn">Submit Post</button>
           <button type="button" class="btn cancel" onclick="closeForm(); clearFormInput();">Close</button>
