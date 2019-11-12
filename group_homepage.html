@@ -370,7 +370,11 @@
 
             let divTag = document.createElement('div');
                 divTag.className = 'card text-center';
-                divTag.setAttribute("id", "card-"+idCount++);
+                var dateGenerated = new Date();
+                var dateGenerated = dateGenerated.getTime();
+                var stringDate = dateGenerated.toString();
+                divTag.setAttribute("id", stringDate);
+            
             let cardBody = document.createElement('div');
                 cardBody.className='card-body';
       
@@ -395,7 +399,7 @@
                 })
             let moveRightButton = document.createElement('button');
                 moveRightButton.innerHTML = ">";
-                //console.log(divTag.getAttribute("id"));
+                console.log(divTag.getAttribute("id"));
                 moveRightButton.addEventListener("click", function(){
                         //moveCard(divSection, divTag.getAttribute("id"))
                         var cardID = divTag.getAttribute("id");
@@ -440,7 +444,7 @@
 
         }
 
-        function generateTask(divSection, name, description, dueDate, assignee){
+        function generateTask(divSection, name, description, dueDate, assignee, goal_id){
             if(divSection == "inProgressCards"){
                 divSection = document.getElementById('inProgressCards');
             }
@@ -456,7 +460,7 @@
 
             var divTag = document.createElement('div');
                 divTag.className = 'card text-center';
-                divTag.setAttribute("id", "card-"+idCount++);
+                divTag.setAttribute("id", goal_id);
 
             var cardBody = document.createElement('div');
                 cardBody.className='card-body';
@@ -488,7 +492,7 @@
                 moveRightButton.addEventListener("click", function(){
                         //moveCard(divSection, divTag.getAttribute("id"))
                         var cardID = divTag.getAttribute("id");
-                        console.log(cardID);
+                        //console.log(cardID);
                         //console.log(section);
                         if(section == "toDoCards"){
                             document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
