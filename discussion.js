@@ -197,12 +197,16 @@ function newPost()
     //childEl.appendChild(cardBody)
     childEl.innerHTML = "<div id='discussion-card"+j + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/png/bronze.png' alt='Card image' style='width: 3%;'> " + userId + " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + getPostTitle() + "</h1> <div class='content'><p>" +getPostDetail() + " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeThumbImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'> <img id='xmark" + j + "' onclick ='changeXImage("+j+")'src='assets/png/xmark.png' style='max-height:3%; max-width:2.5%;'><img id='qmark" + j + "' onclick ='changeQImage("+j+")'src='assets/png/qmark.png' style='max-height:3%; max-width:3%;'><details style='padding-left:9px; text-decoration:underline;'><summary>Comments </summary><ul id='commentContent" + j+ "'></ul> <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button id='commentButton' type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul> </details></div> <button onclick='removePost("+j+")'>Remove Post</button> </div> </div> </div>"
     dposts.posts.push({"postId": j, "author": userId, "usersId":userId,"title": getPostTitle(),"post-detail":getPostDetail(),"likes":0,"comments":[]})
-    console.log(dposts)
+    if(sections.includes(section) == false)
+    {
+        alert("must enter a section that exists!!")
+        return
+    }
     document.getElementById(section).appendChild(childEl);
     alert("You just recieved 50 points for making a new post!")
     j = j + 1
 }
-function generatePost(divSection,userName,postTitle,postDetail,postId,comments)
+function generatePost(divSection,userId,title,description,postId,comments)
 {
     let childEl = document.createElement("card"); //creates a new card
     var name = "discussion-card"+j
@@ -211,16 +215,15 @@ function generatePost(divSection,userName,postTitle,postDetail,postId,comments)
     childEl.setAttribute("id", postId)
     childEl.innerHTML = 
         "<div id='"
-          + name +
+          + postId +
         "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/png/bronze.png' alt='Card image' style='width: 3%;'> " 
-        + userName + 
+        + userId + 
         " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" 
-        + postTitle + 
+        + title + 
         "</h1> <div class='content'><p>" 
-        + postDetail + 
+        + description + 
         " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeThumbImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'> <img id='xmark" + j + "' onclick ='changeXImage("+j+")'src='assets/png/xmark.png' style='max-height:3%; max-width:2.5%;'><img id='qmark" + j + "' onclick ='changeQImage("+j+")'src='assets/png/qmark.png' style='max-height:3%; max-width:3%;'><details style='padding-left:9px; text-decoration:underline;'><summary>Comments </summary><ul id='commentContent" + j+ "'></ul> <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button id='commentButton' type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul> </details></div> <button onclick='removePost("+j+")'>Remove Post</button> </div> </div> </div>"
     dposts.posts.push({"postId": j, "author": userId, "usersId":userId,"title": getPostTitle(),"post-detail":getPostDetail(),"likes":0,"comments":[]})
-    console.log(dposts)
     document.getElementById(divSection).appendChild(childEl);
     alert("You just recieved 50 points for making a new post!")
     j = j + 1
@@ -253,7 +256,6 @@ function addDiscussionSection()
         sectionlen++
         parent.appendChild(el)
         discussionBoard.appendChild(board)
-        console.log(sectionlen)
     }
 }
 function addComment(id)
@@ -276,7 +278,6 @@ function removePost(id)
     let name = "discussion-card" + id
     var el = document.getElementById(name)
     dposts.posts.pop()
-    console.log(el)
     el.remove()
 }
 function clearSectionInput()
