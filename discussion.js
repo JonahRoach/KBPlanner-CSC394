@@ -90,24 +90,12 @@ function populateDiscussionSections()
         var board = document.createElement("div")
         board.setAttribute("id", sections[i])
         el.setAttribute("class", "nav-item")
-        if(i == 0)
-        {
-            board.setAttribute("id", sections[i])
-            board.className = "tab-pane fade in active"
-            el.innerHTML = "<a class='nav-link' href='#"+sections[i]+"' data-toggle='tab'>"+ sections[i] +"</a>"
-            parent.appendChild(el)
-            discussionBoard.appendChild(board)
-            sectionlen++
-        }
-        else
-        {
-            board.setAttribute("id", sections[i])
-            board.className = "tab-pane fade"
-            el.innerHTML = "<a class='nav-link' href='#"+sections[i]+"' data-toggle='tab'>"+ sections[i] +"</a>"
-            parent.appendChild(el)
-            discussionBoard.appendChild(board)
-            sectionlen++
-        }
+        board.setAttribute("id", sections[i])
+        board.className = "tab-pane fade"
+        el.innerHTML = "<a class='nav-link' href='#"+sections[i]+"' data-toggle='tab'>"+ sections[i] +"</a>"
+        parent.appendChild(el)
+        discussionBoard.appendChild(board)
+        sectionlen++
    
     } 
 
@@ -236,7 +224,9 @@ function addDiscussionSection()
     var el = document.createElement('li')
     var discussionBoard = document.getElementById("d-content")
     var board = document.createElement("div")
+    board.setAttribute("id", section)
     el.setAttribute("class", "nav-item")
+    board.className = "tab-pane fade"
     if(sectionlen >= maxSectionLen)
     {
         console.log("too large")
@@ -249,13 +239,12 @@ function addDiscussionSection()
     }
     else
     {
-        board.setAttribute("id", section)
-        board.className = "tab-pane fade"
+        
         el.innerHTML = "<a class='nav-link'  href='#"+section+"' data-toggle='tab'>"+ section +"</a>"
         sections.push(section)
-        sectionlen++
         parent.appendChild(el)
         discussionBoard.appendChild(board)
+        sectionlen++
     }
 }
 function addComment(id)

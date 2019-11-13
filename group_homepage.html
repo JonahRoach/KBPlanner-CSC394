@@ -444,7 +444,8 @@
 
         }
 
-        function generateTask(divSection, name, description, dueDate, assignee, goal_id){
+        function generateTask(divSection, name, description, dueDate, assignee, goal_id)
+        {
             if(divSection == "inProgressCards"){
                 divSection = document.getElementById('inProgressCards');
             }
@@ -464,7 +465,7 @@
 
             var cardBody = document.createElement('div');
                 cardBody.className='card-body';
-      
+     
             var title = document.createElement('h4');
                 title.innerHTML = name;
                 title.className='card-title';
