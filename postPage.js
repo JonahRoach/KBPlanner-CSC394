@@ -66,7 +66,7 @@ function generatePost(postId, points, userId,title,description)
         + title + 
         "</h1> <div class='content'><p>" 
         + description + 
-        " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+postId+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeThumbImage( "+postId+") ' style='width: 2%; padding-left:9px; ' id='thumb'> <img id='xmark" + postId + "' onclick ='changeXImage("+postId+")'src='assets/png/xmark.png' style='max-height:3%; max-width:2.5%;'><img id='qmark" + postId + "' onclick ='changeQImage("+postId+")'src='assets/png/qmark.png' style='max-height:3%; max-width:3%;'></div> </div> </div> </div> <div> <strong> <span> Comments </span></strong> </div>"
+        " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+postId+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeThumbImage( "+postId+") ' style='width: 2%; padding-left:9px; ' id='thumb'> <img id='xmark" + postId + "' onclick ='changeXImage("+postId+")'src='assets/png/xmark.png' style='max-height:3%; max-width:2.5%;'><img id='qmark" + postId + "' onclick ='changeQImage("+postId+")'src='assets/png/qmark.png' style='max-height:3%; max-width:3%;'></div> </div> </div> </div> <div> <strong> <span> Comments </span></strong>"
     document.getElementById("discussion-post").appendChild(childEl);
     generateComment(postId,userId,"hello hello")
 
