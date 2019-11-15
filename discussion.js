@@ -48,7 +48,7 @@ var j = 0 //gobal for posts
 var x = 1 //for hiding discussion sections
 var sectionlen = 0
 const maxSectionLen = 5
-var userId = 0
+var userId = 0 //will use getUser from database
 
 var thumbimages = 
 [
@@ -77,7 +77,9 @@ var sections = ["General", "Brainstorming"]
 window.onload = function startup()
 {
     populateDiscussionSections()
-    loadPosts("General")
+    loadPosts("General")//which section the original posts go
+    this.generatePost("Brainstorming", 1000, "Frank","Title", "Description", 10,[])
+    this.generatePost("General",2000, "Bruh","Analytics", "Something about something", 20,["Hello"])
 }
 
 function populateDiscussionSections()
@@ -194,8 +196,29 @@ function newPost()
     alert("You just recieved 50 points for making a new post!")
     j = j + 1
 }
-function generatePost(divSection,userId,title,description,postId,comments)
+function generatePost(divSection, points, userId,title,description,postId,comments)
 {
+    var rank = "bronze"
+    if(points > 200 )
+    {
+        rank = "silver"
+    }
+    if(points > 500)
+    {
+        rank = "plat"
+    }
+    if(points > 900)
+    {
+        rank = "gold"
+    }
+    if(points > 1300)
+    {
+        rank = "gold"
+    }
+    if(points > 1500)
+    {
+        rank = "elite"
+    }
     let childEl = document.createElement("card"); //creates a new card
     var name = "discussion-card"+j
     //details tag not supported by IE
@@ -204,16 +227,15 @@ function generatePost(divSection,userId,title,description,postId,comments)
     childEl.innerHTML = 
         "<div id='"
           + postId +
-        "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/png/bronze.png' alt='Card image' style='width: 3%;'> " 
+        "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/png/"+rank+".png' alt='Card image' style='width: 3%;'> " 
         + userId + 
-        " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" 
+        " <div class='card-img text-center'> <h1 style='text-decoration:underline;'><a href='postPage.html'>" 
         + title + 
-        "</h1> <div class='content'><p>" 
+        "</a></h1> <div class='content'><p>" 
         + description + 
-        " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeThumbImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'> <img id='xmark" + j + "' onclick ='changeXImage("+j+")'src='assets/png/xmark.png' style='max-height:3%; max-width:2.5%;'><img id='qmark" + j + "' onclick ='changeQImage("+j+")'src='assets/png/qmark.png' style='max-height:3%; max-width:3%;'><details style='padding-left:9px; text-decoration:underline;'><summary>Comments </summary><ul id='commentContent" + j+ "'></ul> <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button id='commentButton' type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul> </details></div> <button onclick='removePost("+j+")'>Remove Post</button> </div> </div> </div>"
+        " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeThumbImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'> <img id='xmark" + j + "' onclick ='changeXImage("+j+")'src='assets/png/xmark.png' style='max-height:3%; max-width:2.5%;'><img id='qmark" + j + "' onclick ='changeQImage("+j+")'src='assets/png/qmark.png' style='max-height:3%; max-width:3%;'><details style='padding-left:9px; text-decoration:underline;'><summary>Comments </summary><ul id='commentContent" + j+ "'></ul> <div> </div></ul> </details></div> </div> </div> </div>"
     dposts.posts.push({"postId": j, "author": userId, "usersId":userId,"title": getPostTitle(),"post-detail":getPostDetail(),"likes":0,"comments":[]})
     document.getElementById(divSection).appendChild(childEl);
-    alert("You just recieved 50 points for making a new post!")
     j = j + 1
 }
 function addDiscussionSection()
