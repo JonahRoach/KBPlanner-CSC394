@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap setup -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="professor.js"></script>
+    <!-- <script src="admin.css"></script> -->
+</head>
+
+
+<body style="background-color: darkgrey">
+    <header>
+        <nav class="navbar navbar-expand-md bg-light">
+        
+            <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <a class="navbar-brand d-none d-md-block" routerLink="">KB Planner </a>
+    
+            <a class="navbar-brand ml-auto mr-auto d-md-none" routerLink=""> KB Planner</a>
+    
+            <a href="profile.html">
+                <img class="d-md-none" src="assets/svg/user-1633249.svg" height="30px" width="30px" />
+            </a>
+        
+            <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="professor.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="roster.html">Roster</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="grades.html">Grades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Analytics.html">Analytics</a>
+                    </li>
+                </ul>
+            </div>
+            <a href="login_screen.html" style = "padding-right: 5px;">
+                Log Out
+            </a>
+            <a class="account d-none d-md-block" href="#">
+                <img src="assets/svg/user-1633249.svg" width = "30" height = "30" alt="Profile">
+            </a>
+        </nav>
+    </header>
+
+    <div class="row justify-content-center" style="padding-top: 20px;">
+        <div class="col-4">
+            <div id="formShadow" class="shadow-lg p-3 mb5 bg-white rounded">
+                <div id="formContainer" class="card rounded-0" style = "width: 22rem; align-content: center;">
+                    <form class="form-horizontal">
+                        <fieldset>  
+                            <div class = "card-header">
+                                <h3 class = "mb-0"> Add Student to Group</h3>
+                            </div>
+            
+                            <div class = "card-body">
+                                <div class="form-group">
+                                    <label for="textinput" class="control-label col">Student's Email:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="textinput" placeholder="Student Email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col" for="roleInput">Select Group:</label>
+                                    <div class="controls col-sm-10">
+                                        <select id="selectGroup" name="roleInput" class="form-control" required="">
+                                            <option>Group 1</option>
+                                            <option>Group 2</option>
+                                            <option>Group 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                    <!-- Button http://getbootstrap.com/css/#buttons -->
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2" for="singlebutton"></label>
+                                    <div class="text-right col-sm-10">
+                                        <button type="button" id="addToGroup" name="singlebutton" class="btn btn-primary" aria-label="">Add to Group</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div id="formShadow" class="shadow-lg p-3 mb5 bg-white rounded">
+                <div id = "formContainer" class = "card rounded-0" style = "width: 22rem; align-content: center;">
+                    <form class="form-horizontal">
+                        <fieldset>                       
+                            <div class = "card-header">
+                                <h3 class = "mb-0">Create Group</h3>
+                            </div>
+                            <div class = "card-body">
+                                <div class="form-group">
+                                    <label for="studentIDInput" class="control-label col">Group Number:</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" id="studentGroupNumber" placeholder="Group Number">
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label class="control-label col" for="selectClass">Select Class:</label>
+                                    <div class="controls  col-sm-10">
+                                        <select id="selectClass" name="selectClass" class="form-control" required="">
+                                            <option>Class 1</option>
+                                            <option>Class 2</option>
+                                            <option>Class 3</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+                                <div class="form-group" >
+                                    <!-- <label class="control-label col-sm-4" for="singlebutton"></label> -->
+                                    <div class="text-right col-sm-10">
+                                        <button type="button" id="createGroup" name="singlebutton" class="btn btn-primary" aria-label="" onclick="getGroupNumber()">Create Group</button>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+  
+<footer class = "footer">
+    <nav class="navbar fixed-bottom navbar-light bg-light">
+        <ul class="navbar-nav flex-row m-auto">
+            <li class="nav-item">
+                <a routerLink="/about" class="nav-link mr-2">ABOUT</a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/contact" class="nav-link ml-2" style = "text-align: right">CONTACT US</a>
+            </li>
+        </ul>
+    </nav>
+</footer>
+
+
+<!-- End of footer -->
+
+    

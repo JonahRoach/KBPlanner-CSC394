@@ -71,12 +71,8 @@
                         <i class="fa fa-user-circle-o fa-5x" aria-hidden="true"></i>
                     </div>
                        
-                    <div class="firstname" id=firstName> 
-                        <h4>FirstName</h4>
-                    </div>
-
-                    <div class="lastname" id=lastName> 
-                        <h4>LastName</h4>
+                    <div class="firstlastname" id=firstNameLastName> 
+                        <h4>FirstName LastName</h4>
                     </div>
 
                     <div class="userinfo" id="email">
@@ -88,29 +84,31 @@
                     <div class="points">
                         <p>Points:</p>
                     </div>
-                
+                    <div class="btn3-class" style="padding-top: 50px; padding-left: 190px;">
+                        <button type="submit" class="btn" id="btnSignOut">Sign Out</button>
+                    </div>
                 </div>
 
                 <div class = "col-md-7" style="border: 1px solid black; padding-bottom: 10px;">
                     <h3>My Account</h3>
-                    <!-- <form> -->
+                    <form>
                         <div class="form-group" style="padding:20px 100px;">
                             <div class="field" style="padding-top:13px; padding-bottom:13px;">
                                 <label for="subject" style="color:black; padding-left:10px;">
                                     Password:
                                 </label>
-                                <input type="password" class="form-control" id="password" placeholder="New Password" required="required" />
+                                <input type="password" class= "form-control" id="password" placeholder = "New Password" required="required" />
                             </div>
         
                             <div class="btn-class">
-                                <button onclick="changePassword()" class="btn" id="btnUpdate" >Update</button>
+                                <button type="submit" class="btn" id="btnUpdate" >Update</button>
                             </div>
                         </div>
-                    <!-- </form> -->
+                    </form>
                     <hr style="border-color: black;">
 
                     <div class="btn2-class">
-                        <button onclick="deleteAccount()" class="btn" id="btnDeleteAcc" >Delete Account</button>
+                        <button type="submit" class="btn" id="btnDeleteAcc" >Delete Account</button>
                     </div>
                 </div>
             </div>
@@ -129,20 +127,6 @@
                     </ul>
                 </nav>
         </footer>
-
-        <script>
-            function changePassword(){
-                let newPassword = document.getElementById('password').value;
-                alert("You've changed your password to: " + newPassword);
-                document.getElementById('password').value=null;
-            }
-
-            function deleteAccount() {
-                if (confirm("DELETE ACCOUNT? \n Once you confirm, all of your account data will be permanently deleted.")){
-                    location.href = "login_screen.html";
-                }
-            }
-            
-        </script>
+        
     </body>
 </html>

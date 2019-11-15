@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+    
+  <!-- Bootstrap setup -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="roster.js"></script>
+  <!-- <script src="admin.css"></script> -->
+  <style>
+    #box form {
+    background:deepskyblue;
+    padding:5px;
+    display:none;
+    position:absolute;
+    top:27px;
+    }
+  </style>
+</head>
+
+<header>
+  <nav class="navbar navbar-expand-md bg-light">
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand d-none d-md-block" routerLink="">KB Planner </a>
+
+    <a class="navbar-brand ml-auto mr-auto d-md-none" routerLink=""> KB Planner</a>
+
+    <a href="profile.html">
+      <img class="d-md-none" src="assets/svg/user-1633249.svg" height="30px" width="30px" />
+    </a>
+
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="professor.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="roster.html">Roster</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="grades.html">Grades</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Analytics.html">Analytics</a>
+        </li>
+      </ul>
+    </div>
+    <a href="login_screen.html" style = "padding-right: 5px;">
+      Log Out
+    </a>
+
+    <a class="account d-none d-md-block" href="#">
+      <img src="assets/svg/user-1633249.svg" width = "30" height = "30" alt="Profile">      
+    </a>
+  </nav>
+</header>
+
+
+
+<body style="background-color: darkgrey">
+    <!-- Begin Page Content -->
+    <div class="container-fluid" style="padding-bottom:70px">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800"></h1>
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4" >
+              <div class="card-header py-3">
+                <h4 class="m-0 font-weight-bold text-primary">Class Roster</h4>
+                <!-- <button class="ml-2"> < </button>
+                <button class="m-auto"> > </button> -->
+              </div>
+              <div class="card-body" >
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+                    <thead>
+                      <tr>
+                        <th>Student Name</th>
+                        <th>Student Email</th>
+                        <th>Group Number</th>
+                        <th>Project Name</th>
+                        <th>Points</th>
+                      </tr>
+                    </thead>
+                
+                    <tbody id="tableContent">
+                      
+                     
+                    </tbody>
+                    <button id="addStudent" class = "btn btn-primary" onclick="showForm(); ">Add Student</button>
+                    <div id= "box" hidden=true>
+                                
+                      <p><input type="text" id='studentName' placeholder="Student Name"></p>
+                      <p><input type="text" id = 'studentEmail' placeholder="Student Email"></p>
+                      <p><input type = "text" id= 'groupNum' placeholder="Group Number"></p>
+                      <p><input type = "text" id= 'projectName' placeholder="Project Name"></p>
+                      
+                      <p><button onclick="addStudentToRoster(); hideForm();">Submit</button></p>
+              
+
+                </div>
+              </table>
+                  
+                </div>
+              </div>
+            </div>
+  
+          </div>
+          <!-- /.container-fluid -->
+  
+        </div>
+        <!-- End of Main Content -->
+  
+</body>
+  
+<footer class = "footer">
+
+        <nav class="navbar fixed-bottom navbar-light bg-light">
+            <ul class="navbar-nav flex-row m-auto">
+                <li class="nav-item">
+                    <a routerLink="/about" class="nav-link mr-2">ABOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/contact" class="nav-link ml-2" style = "text-align: right">CONTACT US</a>
+                </li>
+            </ul>
+        </nav>
+</footer>
+
+
+<!-- End of footer -->
+
+    
