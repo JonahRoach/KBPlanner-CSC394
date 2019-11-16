@@ -43,41 +43,12 @@ var roster =
         "groupNum" : 1,
         "projectName": "Project Name",
         "points": 2000
-    },
-    {
-        "name": "First Last7",
-        "email" : "test@gmail.com",
-        "groupNum" : 1,
-        "projectName": "Project Name",
-        "points": 2000
-    },
-    {
-        "name": "First Last8",
-        "email" : "test@gmail.com",
-        "groupNum" : 1,
-        "projectName": "Project Name",
-        "points": 2000
     }
    ],
-   "groups":
-   [
-       {
-        "groupName" : "Test Name",
-
-       } 
-
-   ] 
 }
 
 var j = 0; //table element ID
-
-$("#button").click(function() {  
-        $("#box form").toggle("slow");
-        return false;
-    });
-
     
-
 window.onload = function startup()
 {
     populateRoster()
@@ -90,19 +61,9 @@ function populateRoster()
     {
         var el = document.createElement("tr")
         el.setAttribute("id", "tableEl"+i)
-        el.setAttribute("contenteditable", "true")
-        var removeButton = document.createElement("button")
-        var saveButton = document.createElement("button")
-        saveButton.innerHTML = "Save"
-        saveButton.setAttribute("onclick", "saveButton();")
-        saveButton.setAttribute("contenteditable", "false")
-        removeButton.setAttribute("onclick", "removeFromTable(" + i + ");")
-        removeButton.setAttribute("contenteditable", "false")
-        removeButton.innerHTML = "Remove" 
-        el.innerHTML= "<td>" + roster.students[i].name + "</td> <td>" + roster.students[i].email + "</td> <td>" + roster.students[i].groupNum + "</td> <td>" + roster.students[i].projectName + "</td><td>" + roster.students[i].points ;
+        el.setAttribute("contenteditable", "false")
+        el.innerHTML= "<td>" + roster.students[i].name + "</td> <td>" + roster.students[i].email + "</td> <td>" + roster.students[i].groupNum + "</td> <td>" + roster.students[i].projectName + "</td><td>" + roster.students[i].points + "</td>";
         parent.appendChild(el)
-        el.append(removeButton)
-        el.append(saveButton)
         j++
     }
 
@@ -125,31 +86,9 @@ function addStudentToRoster()
     
     var el = document.createElement("tr")
     el.setAttribute("id", "tableEl"+j)
-    var removeButton = document.createElement("button")
-    var saveButton = document.createElement("button")
-    saveButton.innerHTML = "Save"
-    saveButton.setAttribute("onclick", "saveButton();")
-    saveButton.setAttribute("contenteditable", "false")
-    removeButton.setAttribute("onclick", "removeFromTable(" + j + ");")
-    removeButton.innerHTML = "Remove" 
 
-    el.innerHTML= "<td>" + name + "</td> <td>" + email + "</td> <td>" + group + "</td> <td>" + project + "</td><td>" + "0" ;
+    el.innerHTML= "<td>" + name + "</td> <td>" + email + "</td> <td>" + group + "</td> <td>" + project + "</td><td>" + "0" + "</td>";
     parent.appendChild(el)
-    el.append(removeButton)
-    el.append(saveButton)
-    console.log(parent)
-    console.log(el)
-
-}
-function saveButton()
-{
-    alert("Student changes have been saved")
-}
-function showForm()
-{
-    document.getElementById("box").hidden = false
-}
-function hideForm()
-{
-    document.getElementById("box").hidden = true
+    // console.log(parent)
+    // console.log(el)
 }

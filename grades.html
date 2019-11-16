@@ -12,30 +12,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="grades.js"></script>
     <!-- <script src="admin.css"></script> -->
-    <style>
-      #box form {
-      background:deepskyblue;
-      padding:5px;
-      display:none;
-      position:absolute;
-      top:27px;
-   }
-    </style>
-  </head>
-<header>
-        <nav class="navbar navbar-expand-md bg-light">
+</head>
 
+<body style="background-color: darkgrey">
+  <header>
+    <nav class="navbar navbar-expand-md bg-light">
       <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <a class="navbar-brand d-none d-md-block" routerLink="">
-        KB Planner 
-      </a>
+      <a class="navbar-brand d-none d-md-block" routerLink="">KB Planner </a>
 
-      <a class="navbar-brand ml-auto mr-auto d-md-none" routerLink="">
-        KB Planner
-      </a>
+      <a class="navbar-brand ml-auto mr-auto d-md-none" routerLink="">KB Planner</a>
 
       <a href="profile.html">
         <img class="d-md-none" src="assets/svg/user-1633249.svg" height="30px" width="30px" />
@@ -52,7 +40,6 @@
           <li class="nav-item">
             <a class="nav-link" href="grades.html">Grades</a>
           </li>
-
           <li class="nav-item">
             <a class="nav-link" href="Analytics.html">Analytics</a>
           </li>
@@ -64,16 +51,10 @@
       <a class="account d-none d-md-block" href="#">
           <img src="assets/svg/user-1633249.svg" width = "30" height = "30" alt="Profile">  
       </a>
-
     </nav>
-<div>
-    
-</header>
-
-<!-- End of Nav Bar -->
+  </header>
 
 
-<body style="background-color: darkgrey">
   <div class="container-fluid" style="padding-bottom:70px">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800"></h1>
@@ -95,37 +76,27 @@
               </thead>
               <tbody id="tableContent">
               </tbody>
-              <!-- <button id="addStudent" class = "btn btn-primary" onclick="showForm(); ">Add Student</button>
-              <div id= "box" hidden=true>        
-                <p><input type="text" id='studentName' placeholder="Student Name"></p>
-                <p><input type = "text" id= 'groupNum' placeholder="Group Number"></p>
-                <p><input type = "text" id= 'projectName' placeholder="Project Name"></p>
-                <p><button onclick="addStudentToRoster(); hideForm();">Submit</button></p>
-              </div> -->
             </table> 
           </div>
         </div>
       </div>
     </div>  
   </div>
-  
+  <footer class = "footer">
+    <nav class="navbar fixed-bottom navbar-light bg-light">
+      <ul class="navbar-nav flex-row m-auto">
+        <li class="nav-item">
+          <a routerLink="/about" class="nav-link mr-2">ABOUT</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/contact" class="nav-link ml-2" style = "text-align: right">CONTACT US</a>
+        </li>
+      </ul>
+    </nav>
+  </footer>
+  <!-- End of footer -->
 </body>
   
-<footer class = "footer">
 
-        <nav class="navbar fixed-bottom navbar-light bg-light">
-            <ul class="navbar-nav flex-row m-auto">
-                <li class="nav-item">
-                    <a routerLink="/about" class="nav-link mr-2">ABOUT</a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/contact" class="nav-link ml-2" style = "text-align: right">CONTACT US</a>
-                </li>
-            </ul>
-        </nav>
-</footer>
-
-
-<!-- End of footer -->
 
     
