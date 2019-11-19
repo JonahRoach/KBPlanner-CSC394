@@ -77,7 +77,7 @@ var sections = ["General", "Brainstorming"]
 window.onload = function startup()
 {
     populateDiscussionSections()
-    loadPosts("General")//which section the original posts go
+   // loadPosts("General")//which section the original posts go
     this.generatePost("Brainstorming", 1000, "Frank","Title", "Description", 10,[])
     this.generatePost("General",2000, "Bruh","Analytics", "Something about something", 20,["Hello"])
 }
@@ -93,11 +93,24 @@ function populateDiscussionSections()
         board.setAttribute("id", sections[i])
         el.setAttribute("class", "nav-item")
         board.setAttribute("id", sections[i])
-        board.className = "tab-pane fade"
-        el.innerHTML = "<a class='nav-link' href='#"+sections[i]+"' data-toggle='tab'>"+ sections[i] +"</a>"
-        parent.appendChild(el)
-        discussionBoard.appendChild(board)
-        sectionlen++
+        //board.className = "tab-pane fade"]
+        //board.className = "tab-pane fade active show"
+        if(i == 0)
+        {
+            board.className = "tab-pane fade active show"
+            el.innerHTML = "<a class='nav-link active' href='#"+sections[i]+"' data-toggle='tab'>"+ sections[i] +"</a>"
+            parent.appendChild(el)
+            discussionBoard.appendChild(board)
+            sectionlen++
+        }
+        else{
+            board.className = "tab-pane fade"
+            el.innerHTML = "<a class='nav-link' href='#"+sections[i]+"' data-toggle='tab'>"+ sections[i] +"</a>"
+            parent.appendChild(el)
+            discussionBoard.appendChild(board)
+            sectionlen++
+        }
+       
    
     } 
 
@@ -185,7 +198,7 @@ function newPost()
     childEl.setAttribute("class", "card mb-2")
     childEl.setAttribute("id", name)
     //childEl.appendChild(cardBody)
-    childEl.innerHTML = "<div id='discussion-card"+j + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/png/bronze.png' alt='Card image' style='width: 3%;'> " + userId + " <div class='card-img text-center'> <h1 style='text-decoration:underline;'>" + getPostTitle() + "</h1> <div class='content'><p>" +getPostDetail() + " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeThumbImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'> <img id='xmark" + j + "' onclick ='changeXImage("+j+")'src='assets/png/xmark.png' style='max-height:3%; max-width:2.5%;'><img id='qmark" + j + "' onclick ='changeQImage("+j+")'src='assets/png/qmark.png' style='max-height:3%; max-width:3%;'><details style='padding-left:9px; text-decoration:underline;'><summary>Comments </summary><ul id='commentContent" + j+ "'></ul> <div><input id='comment-input" + j + "' type='text' placeholder='Enter Comment'><button id='commentButton' type='button' class='btn btn-primary' onclick='addComment("+j+")'> + </button></div></ul> </details></div> <button onclick='removePost("+j+")'>Remove Post</button> </div> </div> </div>"
+    childEl.innerHTML = "<div id='discussion-card"+j + "' > <div class='card-header' style='padding-top: 20px; outline:soild;'> <img class='card-img-top' src='assets/png/bronze.png' alt='Card image' style='width: 3%;'> " + userId + " <div class='card-img text-center'> <h1 style='text-decoration:underline;'><a href='postPage.html'>" + getPostTitle() + "</a></h1> <div class='content'><p>" +getPostDetail() + " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeThumbImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'> <img id='xmark" + j + "' onclick ='changeXImage("+j+")'src='assets/png/xmark.png' style='max-height:3%; max-width:2.5%;'><img id='qmark" + j + "' onclick ='changeQImage("+j+")'src='assets/png/qmark.png' style='max-height:3%; max-width:3%;'></div> <button onclick='removePost("+j+")'>Remove Post</button> </div> </div> </div>"
     dposts.posts.push({"postId": j, "author": userId, "usersId":userId,"title": getPostTitle(),"post-detail":getPostDetail(),"likes":0,"comments":[]})
     if(sections.includes(section) == false)
     {
@@ -233,7 +246,7 @@ function generatePost(divSection, points, userId,title,description,postId,commen
         + title + 
         "</a></h1> <div class='content'><p>" 
         + description + 
-        " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeThumbImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'> <img id='xmark" + j + "' onclick ='changeXImage("+j+")'src='assets/png/xmark.png' style='max-height:3%; max-width:2.5%;'><img id='qmark" + j + "' onclick ='changeQImage("+j+")'src='assets/png/qmark.png' style='max-height:3%; max-width:3%;'><details style='padding-left:9px; text-decoration:underline;'><summary>Comments </summary><ul id='commentContent" + j+ "'></ul> <div> </div></ul> </details></div> </div> </div> </div>"
+        " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeThumbImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'> <img id='xmark" + j + "' onclick ='changeXImage("+j+")'src='assets/png/xmark.png' style='max-height:3%; max-width:2.5%;'><img id='qmark" + j + "' onclick ='changeQImage("+j+")'src='assets/png/qmark.png' style='max-height:3%; max-width:3%;'></div> </div> </div> </div>"
     dposts.posts.push({"postId": j, "author": userId, "usersId":userId,"title": getPostTitle(),"post-detail":getPostDetail(),"likes":0,"comments":[]})
     document.getElementById(divSection).appendChild(childEl);
     j = j + 1
@@ -246,9 +259,6 @@ function addDiscussionSection()
     var el = document.createElement('li')
     var discussionBoard = document.getElementById("d-content")
     var board = document.createElement("div")
-    board.setAttribute("id", section)
-    el.setAttribute("class", "nav-item")
-    board.className = "tab-pane fade"
     if(sectionlen >= maxSectionLen)
     {
         console.log("too large")
@@ -261,6 +271,9 @@ function addDiscussionSection()
     }
     else
     {
+        board.setAttribute("id", section)
+        el.setAttribute("class", "nav-item")
+        board.className = "tab-pane fade"
         
         el.innerHTML = "<a class='nav-link'  href='#"+section+"' data-toggle='tab'>"+ section +"</a>"
         sections.push(section)
