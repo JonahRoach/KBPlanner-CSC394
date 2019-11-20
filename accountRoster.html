@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="Admin.js"></script>
+    <script src="accountRoster.js"></script>
     <script src="admin.css"></script>
     <style>
       #box form {
@@ -52,7 +52,7 @@
             <a class="nav-link" href = "AdminHomepage.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href = "accountRoster.html.html">Account Database</a>
+            <a class="nav-link" href = "Roster.html">Roster Database</a>
           </li>
 
 
@@ -89,7 +89,7 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
-                        <th>Privellege</th>
+                        <th>Privilege</th>
                       </tr>
                     </thead>
                 
@@ -97,15 +97,22 @@
                       
                      
                     </tbody>
-                    <button id="addStudent" class = "btn btn-primary" onclick="showForm(); ">Add Student</button>
+                    <button id="addAccount" class = "btn btn-primary" onclick="showForm(); ">Add Account</button>
                     <div id= "box" hidden=true>
                                 
-                      <p><input type="text" id='studentName' placeholder="Student Name"></p>
-                      <p><input type="text" id = 'studentEmail' placeholder="Student Email"></p>
-                      <p><input type = "text" id= 'groupNum' placeholder="Group Number"></p>
-                      <p><input type = "text" id= 'projectName' placeholder="Project Name"></p>
+                      <p><input type="text" id='firstName' placeholder="First Name"></p>
+                      <p><input type="text" id = 'lastName' placeholder="Last Name"></p>
+                      <p><input type = "text" id= 'accountEmail' placeholder="Account Email"></p>
+                      <select id = "select">
+                        <option value="none" selected disabled hidden> 
+                              Select Privilege Level 
+                        </option>
+                        <option id = "adminSelect" value = "Admin"> Admin </option>
+                        <option id = "studentSelect" value = "Student"> Student </option>
+                        <option id = "profSelect" value = "Teacher"> Teacher </option>
+                      </select>
                       
-                      <p><button onclick="addStudentToRoster(); hideForm();">Sumbit</button></p>
+                      <p><button onclick="addAccountToRoster(); hideForm();">Sumbit</button></p>
               
 
                 </div>

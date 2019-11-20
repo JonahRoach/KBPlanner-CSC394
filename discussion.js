@@ -116,15 +116,8 @@ function populateDiscussionSections()
 
 
 }
-function loadDiscussionInTab()
-{
 
-}
-function loadPostsFromDB()
-{
-
-}
-function loadPosts(divSection)
+function loadPosts(divSection) //for loading from json object
 {
     for ( var i = 0; i < dposts["posts"].length ; i++)
     {
