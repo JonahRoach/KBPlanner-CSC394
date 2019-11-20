@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="accountRoster.js"></script>
+    <script src="classRoster.js"></script>
     <script src="admin.css"></script>
     <style>
       #box form {
@@ -52,7 +52,7 @@
             <a class="nav-link" href = "AdminHomepage.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href ="classRoster.html"">Roster Database</a>
+            <a class="nav-link" href = "accountRoster.html">Account Database</a>
           </li>
 
 
@@ -61,6 +61,7 @@
       <a href="login_screen.html" style = "padding-right: 5px;">
         Log Out
       </a>
+     
 
     </nav>
 <div>
@@ -79,17 +80,19 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4" >
               <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Account Roster</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Class Roster for (<span id="profTag" ></span>)</h6>
+        
               </div>
               <div class="card-body" >
                 <div class="table-responsive">
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                     <thead>
                       <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Privilege</th>
+                        <th>Student Name</th>
+                        <th>Student Email</th>
+                        <th>Group Number</th>
+                        <th>Project Name</th>
+                        <th>Points</th>
                       </tr>
                     </thead>
                 
@@ -97,22 +100,15 @@
                       
                      
                     </tbody>
-                    <button id="addAccount" class = "btn btn-primary" onclick="showForm(); ">Add Account</button>
+                    <button id="addStudent" class = "btn btn-primary" onclick="showForm(); ">Add Student</button>
                     <div id= "box" hidden=true>
                                 
-                      <p><input type="text" id='firstName' placeholder="First Name"></p>
-                      <p><input type="text" id = 'lastName' placeholder="Last Name"></p>
-                      <p><input type = "text" id= 'accountEmail' placeholder="Account Email"></p>
-                      <select id = "select">
-                        <option value="none" selected disabled hidden> 
-                              Select Privilege Level 
-                        </option>
-                        <option id = "adminSelect" value = "Admin"> Admin </option>
-                        <option id = "studentSelect" value = "Student"> Student </option>
-                        <option id = "profSelect" value = "Teacher"> Teacher </option>
-                      </select>
+                      <p><input type="text" id='studentName' placeholder="Student Name"></p>
+                      <p><input type="text" id = 'studentEmail' placeholder="Student Email"></p>
+                      <p><input type = "text" id= 'groupNum' placeholder="Group Number"></p>
+                      <p><input type = "text" id= 'projectName' placeholder="Project Name"></p>
                       
-                      <p><button onclick="addAccountToRoster(); hideForm();">Sumbit</button></p>
+                      <p><button onclick="addStudentToRoster(); hideForm();">Sumbit</button></p>
               
 
                 </div>
