@@ -27,12 +27,40 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
+var loginsPerMonth = new Array(12).fill(0);
+
+
+function myFunction(login_history) {
+  var logins = login_history.split(" | ");
+
+  for (var i = 0; i < logins.length; i++) {
+    var parts = logins[i].substring(0,10).split("-");
+    var date = new Date(parts[0], parts[1] - 1, parts[2]); 
+    loginsPerMonth[date.getMonth()] += 1;
+  }
+  
+  console.log("Number of logins per month:");
+  console.log(loginsPerMonth);
+}
+
+myFunction
+(
+  "2019-11-18 22:18:52.480 | 2019-11-18 22:18:52.520 | 2019-11-18 22:18:52.563 | 2019-11-18 22:18:52.610 | 2019-11-18 22:18:52.650"
+  +
+  "2019-10-18 22:18:52.480 | 2019-10-18 22:18:52.520 | 2019-10-18 22:18:52.563 | 2019-10-18 22:18:52.610"
+  +
+  "2019-9-18 22:18:52.480 | 2019-9-18 22:18:52.520 | 2019-9-18 22:18:52.563"
+);
+
+
+
+
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Nov", "Dec", "Jan", "Feb","Mar"],
+    labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
     datasets: [{
       label: "Number of logins",
       lineTension: 0.3,
@@ -46,7 +74,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0, 10, 40, 70, 90, 150],
+      data: loginsPerMonth,
     }],
   },
   options: {

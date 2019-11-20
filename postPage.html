@@ -71,15 +71,15 @@
 
 <!-- Add New Comment -->
 <div class="form-popup" id="myForm">
-  <form action="javascript:generateComment(getPostId(),getUser(),getComment());; clearFormInput();" class="form-container">
+  <div class="form-container">
     <h1></h1>
 
     <label for="Comment"><b>Enter A Comment</b></label>
     <input type="text" placeholder="Enter Comment" id="comment-input" required>
 
-    <button type="submit"  class="btn">Submit Comment</button>
+    <button type="submit"  class="btn" onclick="generateComment(getPostId(),getUser(),getComment());; clearFormInput();">Submit Comment</button>
     <button type="button" class="btn cancel" onclick="closeForm(); clearFormInput();">Close</button>
-  </form>
+  </div>
 </div>
 <!-- End Add New Comment-->
 

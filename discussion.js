@@ -240,7 +240,6 @@ function generatePost(divSection, points, userId,title,description,postId,commen
         "</a></h1> <div class='content'><p>" 
         + description + 
         " </p></div> </div> </div> <div> <img alt='' id = 'thumb"+j+"'class='ml-auto' src='assets/svg/thumbs-up.png' style='max-height:2%; max-width:2%;' onclick='changeThumbImage( "+j+") ' style='width: 2%; padding-left:9px; ' id='thumb'> <img id='xmark" + j + "' onclick ='changeXImage("+j+")'src='assets/png/xmark.png' style='max-height:3%; max-width:2.5%;'><img id='qmark" + j + "' onclick ='changeQImage("+j+")'src='assets/png/qmark.png' style='max-height:3%; max-width:3%;'></div> </div> </div> </div>"
-    dposts.posts.push({"postId": j, "author": userId, "usersId":userId,"title": getPostTitle(),"post-detail":getPostDetail(),"likes":0,"comments":[]})
     document.getElementById(divSection).appendChild(childEl);
     j = j + 1
 }

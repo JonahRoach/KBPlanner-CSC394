@@ -89,7 +89,7 @@
 
 <!-- Add New Post -->
 <div class="form-popup" id="myForm">
-        <form action="javascript:newPost(); clearFormInput();" class="form-container">
+        <div class="form-container">
           <h1></h1>
       
           <label for="section"><b>Enter Discussion Section</b></label>
@@ -101,9 +101,9 @@
           <label for="psw"><b>Enter Post Description</b></label>
           <input type="text" placeholder="Post Description" id="post-detail" required>
       
-          <button type="submit"  class="btn">Submit Post</button>
-          <button type="button" class="btn cancel" onclick="closeForm(); clearFormInput();">Close</button>
-        </form>
+          <button type="submit"  class="btn" onclick="newPost();">Submit Post</button>
+          <button type="button" class="btn cancel" onclick=" closeForm(); clearFormInput();">Close</button>
+      </div>
 </div>
 <!-- End Add New Post-->
 
