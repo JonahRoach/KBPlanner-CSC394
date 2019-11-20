@@ -52,6 +52,40 @@ myFunction
   "2019-9-18 22:18:52.480 | 2019-9-18 22:18:52.520 | 2019-9-18 22:18:52.563"
 );
 
+//Bar Chart
+var ctx = document.getElementById("myBarChart");
+var myBarChart = new Chart(ctx, {
+  type: 'bar',
+  data:
+    {
+      labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+      datasets: [{
+        label: "Number of Contributions",
+        lineTension: 0.3,
+        backgroundColor: "rgba(78, 115, 223, 1)",
+        borderColor: "rgba(78, 115, 223, 1)",
+        pointRadius: 3,
+        pointBackgroundColor: "rgba(78, 115, 223, 1)",
+        pointBorderColor: "rgba(78, 115, 223, 1)",
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+        pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+        pointHitRadius: 10,
+        pointBorderWidth: 2,
+        data: [0,1,2,5,6,8,9,0,6,10,14,50],
+      }],
+  } ,
+  options: {
+    scales: {
+        xAxes: [{
+            stacked: true
+        }],
+        yAxes: [{
+            stacked: true
+        }]
+    }
+  }
+});
 
 
 

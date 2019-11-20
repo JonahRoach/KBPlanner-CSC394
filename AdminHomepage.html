@@ -66,7 +66,7 @@
              
                        <!-- Content Row -->
                        <div class="row">
-                        <div class = "col" style = "width: 35%">
+                        <div class = "col" style = "width: 35%;">
                           <div class = "card shadow bb-4">
                             <div class = "card-header py-3 d-flex flex-row align-items-center justify-content-between">
                               <h6 class = "m-0 font-weight-bold text-primary">Create Student Account</h6>
@@ -89,7 +89,7 @@
                           </div>
                         </div>
 
-                        <div class = "col">
+                        <div class = "col" >
                           <div class = "card shadow bb-4">
                             <div class = "card-header py-3 d-flex flex-row align-items-center justify-content-between">
                               <h6 class = "m-0 font-weight-bold text-primary">Create Roster</h6>
@@ -110,7 +110,7 @@
                        <div class="row">
              
                          <!-- Area Chart -->
-                         <div class="col" style="padding-bottom:80px">
+                         <div class="col">
                            <div class="card shadow mb-4" >
                              <!-- Card Header - Dropdown -->
                              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -136,11 +136,73 @@
                              </div>
                            </div>
                          </div>
-                         <div></div>
+                         </div>
+
+
+                         <div class="row"> 
+                        <!-- bar Chart -->
+                        <div class="col">
+                        <div style="padding-bottom:80px">
+                            <div class="card shadow mb-4" >
+                              <!-- Card Header - Dropdown -->
+                              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Contributions</h6>
+                                <div class="dropdown no-arrow">
+                                  <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                  </a>
+                                  <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                    <div class="dropdown-header">Dropdown Header:</div>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- Card Body -->
+                              <div class="card-body" style="height:50%">
+                                <div class="chart-area" style="height:270px">
+                                  <canvas id="myBarChart" style="height:200px"></canvas>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+                          
+                          <!--Pie Chart -->
+                          <div class="col">
+                              <div class="card shadow mb-4" >
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                  <h6 class="m-0 font-weight-bold text-primary">Number of Students in Rank</h6>
+                                  <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                      <div class="dropdown-header">Dropdown Header:</div>
+                                      <a class="dropdown-item" href="#">Action</a>
+                                      <a class="dropdown-item" href="#">Another action</a>
+                                      <div class="dropdown-divider"></div>
+                                      <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body" style="height:50%">
+                                  <div class="chart-area" style="height:270px">
+                                    <canvas id="myPieChart" style="height:200px"></canvas>
+                                  </div>
+                                </div>
+                              </div>
+          
+                            </div>
+                            </div>
+                          
                         <br></br>
              
-                       <!-- Content Row -->
-                       <div class="row justify-content-center">
+                       
              
                  
                            
