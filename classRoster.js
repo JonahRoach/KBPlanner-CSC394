@@ -70,7 +70,8 @@ var roster =
 }
 
 var j = 0; //table element ID
-var professor = "John Williams"
+//var professor = "John Williams"
+var rosters = ["Roster1","Roster2","Roster3"]
 
 $("#button").click(function() {  
         $("#box form").toggle("slow");
@@ -81,8 +82,9 @@ $("#button").click(function() {
 
 window.onload = function startup()
 {
-    populateRoster()
-    addProfessorNameToRoster(this.professor)
+    //populateRoster()
+    //addProfessorNameToRoster(this.professor)
+    this.generateStudent("frank","fefefwe","1","dasfasfas")
 }
 
 function populateRoster()
@@ -121,9 +123,9 @@ function addStudentToRoster()
     let parent = document.getElementById("tableContent")
     var name = document.getElementById("studentName").value
     var email = document.getElementById("studentEmail").value
-    var group = document.getElementById("groupNum").value
-    var project = document.getElementById("projectName").value
-    roster.students.push({"name":name, "email":email, "groupNum": group, "projectName":project,"points":0})
+    var roster = document.getElementById("classRoster").value
+    var prof = document.getElementById("profName").value
+   //roster.students.push({"name":name, "email":email, "groupNum": group, "projectName":project,"points":0})
     
     var el = document.createElement("tr")
     el.setAttribute("id", "tableEl"+j)
@@ -133,15 +135,52 @@ function addStudentToRoster()
     saveButton.setAttribute("onclick", "saveButton();")
     saveButton.setAttribute("contenteditable", "false")
     removeButton.setAttribute("onclick", "removeFromTable(" + j + ");")
+    removeButton.setAttribute("contenteditable", "false")
     removeButton.innerHTML = "Remove" 
 
-    el.innerHTML= "<td>" + name + "</td> <td>" + email + "</td> <td>" + group + "</td> <td>" + project + "</td><td>" + "0" ;
+    el.innerHTML= "<td>" + name + "</td> <td>" + email + "</td> <td contenteditable='true'>" + roster+ "</td> <td contenteditable='true'>" + prof + "</td>" ;
     parent.appendChild(el)
     el.append(removeButton)
     el.append(saveButton)
-    console.log(parent)
-    console.log(el)
 
+
+    document.getElementById("studentName").value = ""
+    document.getElementById("studentEmail").value = ""
+    document.getElementById("classRoster").value = ""
+    document.getElementById("profName").value = ""
+
+    
+
+}
+function generateStudent(name,email,roster,prof)
+{
+    let parent = document.getElementById("tableContent")
+ 
+
+    
+    var el = document.createElement("tr")
+    el.setAttribute("id", "tableEl"+j)
+    var removeButton = document.createElement("button")
+    var saveButton = document.createElement("button")
+    saveButton.innerHTML = "Save"
+    saveButton.setAttribute("onclick", "saveButton();")
+    saveButton.setAttribute("contenteditable", "false")
+    removeButton.setAttribute("onclick", "removeFromTable(" + j + ");")
+    removeButton.setAttribute("contenteditable", "false")
+    removeButton.innerHTML = "Remove" 
+
+    el.innerHTML= "<td>" + name + "</td> <td>" + email + "</td> <td contenteditable='true'>" + roster+ "</td> <td contenteditable='true'>" + prof + "</td>" ;
+    parent.appendChild(el)
+    el.append(removeButton)
+    el.append(saveButton)
+
+
+    document.getElementById("studentName").value = ""
+    document.getElementById("studentEmail").value = ""
+    document.getElementById("classRoster").value = ""
+    document.getElementById("profName").value = ""
+
+    
 }
 function addProfessorNameToRoster(prof)
 {
