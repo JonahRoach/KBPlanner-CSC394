@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+        <link rel="stylesheet" href="professorProfile.css" type="text/css"> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-md bg-light">
+
+                <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="navbar-brand d-none d-md-block" routerLink="">
+                    KB Planner
+                </a>
+
+                <a class="navbar-brand ml-auto mr-auto d-md-none" routerLink="">
+                    KB Planner
+                </a>
+
+                <a href="profile.html">
+                    <img class="d-md-none" src="assets/svg/user-1633249.svg" height="30px" width="30px" />
+                </a>
+
+                <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href = "professor.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="roster.html">Roster</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="grades.html">Grades</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Analytics.html">Analytics</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <a href="login_screen.html" style = "padding-right: 5px;">
+                    Log Out
+                </a>
+
+                <a class="account d-none d-md-block" href="professorProfile.html">
+                    <img src="assets/svg/user-1633249.svg" width = "30" height = "30" alt="Profile">
+                </a>
+
+            </nav>
+    
+        </header>
+        
+        <div class= "card" style=" max-width: 100%;">
+            <div class="header" style="text-align: center;">
+                <h2>Profile</h2>
+            </div>
+            <div class="row">
+                <div class = "col-md-5" style="border: 1px solid black; padding-top: 80px;">
+                    <div class="userIcon">
+                        <i class="fa fa-user-circle-o fa-5x" aria-hidden="true"></i>
+                    </div>
+                       
+                    <div class="firstlastname" id=firstNameLastName> 
+                        <h4>FirstName LastName</h4>
+                    </div>
+
+                    <div class="userinfo" id="email">
+                        <p>Email: </p>
+                    </div>
+                </div>
+
+                <div class = "col-md-7" style="border: 1px solid black; padding-bottom: 10px;">
+                    <h3>My Account</h3>
+                    <form>
+                        <div class="form-group" style="padding:20px 100px;">
+                            <div class="field" style="padding-top:13px; padding-bottom:13px;">
+                                <label for="subject" style="color:black; padding-left:10px;">
+                                    Password:
+                                </label>
+                                <input type="password" class= "form-control" id="password" placeholder = "New Password" required="required" />
+                            </div>
+        
+                            <div class="btn-class">
+                                <button type="submit" class="btn" id="btnUpdate" >Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer class = "footer">
+            <nav class="navbar fixed-bottom navbar-light bg-light">
+                <ul class="navbar-nav flex-row m-auto">
+                    <li class="nav-item">
+                        <a routerLink="/about" class="nav-link mr-2">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link ml-2" style = "text-align: right">CONTACT US</a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+</html>
