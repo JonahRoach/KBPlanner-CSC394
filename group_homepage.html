@@ -35,96 +35,6 @@
             box-sizing: border-box;
         }
 
-        .wrapper {
-            /*background-color: #dfe6e9;*/
-            display: flex;
-            width: auto;
-            padding-top: 40px;
-            justify-content: left;
-        }
-
-        .calendar {
-            margin: auto;
-            width: 1200px;
-            background-color: #fff;
-            box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.2);
-       
-        }
-
-        .month {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding: 40px 30px;
-            text-align: center;
-            background-color: deepskyblue;
-            color: #fff;
-        }
-
-        .weekdays {
-            background-color: deepskyblue;
-            color: #fff;
-            padding: 7px 0;
-            display: flex;
-        }
-
-        .days {
-            font-weight: 300;
-            padding: 10px 0;
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .weekdays div,
-        .days div {
-            text-align: center;
-            width: 14.28%;
-        }
-
-        .days div {
-            padding: 10px 0;
-            margin-bottom: 10px;
-            transition: all 0.4s;
-        }
-
-        .prev_date {
-            color: #999;
-        }
-
-        .today {
-            background-color: deepskyblue;
-            color: #fff;
-        }
-
-        .days div:hover {
-            cursor: pointer;
-            background-color: #dfe6e9
-        }
-
-        .prev,
-        .next {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 23px;
-            background-color: rgba(0, 0, 0, 0.1);
-            transition: all 0.4s;
-        }
-
-        .prev:hover,
-        .next:hover {
-            cursor: pointer;
-            background-color: rgba(0, 0, 0, 0.2);
-        }
-
-        #month {
-            font-size: 30px;
-            font-weight: 500;
-        }
         #box {
           padding:5px;
           width:200px;
@@ -168,6 +78,14 @@
             background-color: dimgrey;
             overflow:auto;
             z-index: 99 !important;
+        }
+        
+        .anyClass{
+            height: 300px;
+            width: 40%;
+            overflow-y: scroll;
+            overflow-x:hidden;
+            padding: 15px;
         }
     </style>
 </head>
@@ -321,20 +239,14 @@
     </div>
     
     <!-- End of Calendar Div -->
-    
-    <footer class = "footer">
+    <center>
+        <div class="col-md-12" style = "text-align: center; padding: 15px;"><span class = "badge badge-light" style = "padding-top: 15px;"><h4>Upcoming Due Dates</h4></span></div>
+    <div class = "anyClass" id = "upcomingEventList">
 
-            <nav class="navbar fixed-bottom navbar-light bg-light">
-                <ul class="navbar-nav flex-row m-auto">
-                    <li class="nav-item">
-                        <a routerLink="/about" class="nav-link mr-2">ABOUT</a>
-                    </li>
-                    <li class="nav-item">
-                        <a routerLink="/contact" class="nav-link ml-2" style = "text-align: right">CONTACT US</a>
-                    </li>
-                </ul>
-            </nav>
-    </footer>
+    </div>
+</center>
+
+    
     
     
     <!-- End of footer -->
@@ -469,10 +381,32 @@
             
             //divTag.innerHTML = "This is information";
             document.getElementById(divSection).appendChild(divTag);
-            
+            generateUpcomingEvents(goalName, dateInput, assigneeInput);
             
             document.getElementById('taskForm').reset();
 
+        }
+        
+        function generateUpcomingEvents(name, dueDate, assignee){
+            var rowDivTag = document.createElement('div');
+                rowDivTag.className = "row";
+                rowDivTag.style = "background-color: white; padding-top: 15px;"
+            var colDivTag = document.createElement('div');
+                colDivTag.className = "col";
+            var dueDateCol = document.createElement('div');
+                dueDateCol.className = "col-md-3";
+                dueDateCol.innerHTML = "<h3><span class = 'badge badge-info'>" + dueDate + "</span></h3>";
+            var infoCol = document.createElement('div');
+                infoCol.className = "col-md-9";
+                infoCol.innerHTML = "<strong>" + name + "</strong><br><em>Assigned to: " + assignee + "</em></br>";
+        
+            colDivTag.append(dueDateCol);
+            colDivTag.append(infoCol);
+        
+            rowDivTag.append(colDivTag);
+            
+            document.getElementById("upcomingEventList").appendChild(rowDivTag);
+            
         }
 
         function generateTask(divSection, name, description, dueDate, assignee, goal_id){
@@ -572,6 +506,7 @@
             divTag.ondragover = "allowDrop(event)";
 
             divSection.appendChild(divTag);
+            generateUpcomingEvents(name, dueDate, assignee);
         }
 
         
