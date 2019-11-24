@@ -1,6 +1,3 @@
-
-
-
 :root {
     --card-color:white; 
     --primary-color: #302AE6;
@@ -13,12 +10,9 @@
     --badge-color:white;
     --button-color:deepskyblue;
     --button-text:white;
-    --card-text: blue;
-    --form-color: white;
-    --list-color:white;
-  }
-  
-  [data-theme="dark"] {
+}
+
+[data-theme="dark"] {
     --card-color: gray; 
     --primary-color: darkblue;
     --secondary-color: #818cab;
@@ -30,62 +24,48 @@
     --badge-color: black;
     --button-color: darkblue;
     --button-text:gray;
-    --card-text: black;
-    --form-color:  gray; 
-  }
-  
-  
-  nav {
+}
+
+nav {
     background-color: var(--nav-color);
     color: var(--nav-text);
-  
-  
+
+
     
-  }
-  .badge{
+}
+.badge{
     color: var(--badge-color);
     
-  }
-  .card{
-    color: var(--card-text);
+}
+.card{
+    color: var(--card-color);
     background-color: var(--card-color)
-  }
-  span{
+}
+span{
     background-color: var(--button-color);
     
-  }
-  
-  h4{
+}
+h4{
     color: var(--button-text);
-  }
-  button{
+}
+button{
     background-color: var(--button-color);
     color: var(--button-text)
-  
-  }
-  a{
+
+}
+a{
     color: var(--nav-text);
-  }
-
-
-h3 {
-    text-align: center;
-    margin-top: 15px;
 }
 
-label{
-    clear: both;
-    float:left;
-    margin-right: 60px;
+
+* {
+    box-sizing: border-box;
 }
 
-.card{
-    padding-top: 5px;
-    padding-bottom: 25px;
-    padding-left: 30px;
-    padding-right: 30px;
-    background-color:var(--form-color);
+ul {
+    list-style-type: none;
 }
+
 body {
     min-height: 100vh;
     position: relative;
@@ -93,57 +73,17 @@ body {
     font-family: "Lato", sans-serif;
     background-color: var(--bg-color);
     color: var(--font-color);
-  }
-.btn-class{
-    text-align: center;
-    margin-top: 10px;
+}
+    
+
+
+* {
+    margin: 0;
+    box-sizing: border-box;
 }
 
-.firstlastname{
-    margin-left: 90px;
-    padding-left: 80px;
-    padding-top: 20px;
-}
 
-.form-control{
-    width:300px;
-}
 
-.userIcon{
-    float:left;
-    margin-left: 60px;
-}
-
-.userinfo{
-    clear: both;
-    margin-left: 60px;
-    margin-top: 80px;
-    padding-left: 40px;
-}
-
-#btnDeleteAcc{
-    background-color: white;
-    border-color: black;
-    color:var(--button-color);
-    margin:5px;
-    padding: 5px 20px; 
-}
-
-#btnSignOut{
-    background-color: white;
-    border-color: white;
-    color:var(--button-color);
-    margin:5px;
-    padding: 5px 10px; 
-    text-decoration: underline;
-}
-
-#btnUpdate{
-    background-color: var(--button-color);
-    color:var(--card-color);
-    margin:10px;
-    padding: 5px 15px; 
-}
 input[type="submit"] {
     background:white;
     color:black;
@@ -152,8 +92,61 @@ input[type="submit"] {
     text-align:left;
     cursor:pointer;
   }
+  #popupTaskForm{
+      width:400px;
+      opacity:.95;
+      position: fixed;
+      display:none;
+      top:50%;
+      left:50%;
+      margin-left: -200px;
+      margin-top: -200px;
+      padding: 30px;
+      background-color: dimgrey;
+      overflow:auto;
+      z-index: 99 !important;
+  }
   
-  .theme-switch-wrapper {
+  .anyClass{
+      height: 300px;
+      width: 40%;
+      overflow-y: scroll;
+      overflow-x:hidden;
+      padding: 15px;
+  }
+
+#box {
+  padding:5px;
+  width:200px;
+  z-index:10;
+  position:relative;  
+}
+#box form {
+ background:deepskyblue;
+ padding:5px;
+ display:none;
+ position:absolute;
+ top:27px;
+}
+#button {
+  width:75px;
+  background:#dc3545;
+  color:#fff;
+  padding:3px 10px;
+  border:1px solid #dc3545;  
+  margin-bottom:15px;  
+  cursor:pointer;
+}
+input[type="submit"] {
+  background:white;
+  color:black;
+  border-style: solid;
+  border-color: white;
+  text-align:left;
+  cursor:pointer;
+}
+
+.theme-switch-wrapper {
     display: flex;
     align-items: center;
   
@@ -206,4 +199,3 @@ input[type="submit"] {
   .slider.round:before {
     border-radius: 50%;
   }
-  

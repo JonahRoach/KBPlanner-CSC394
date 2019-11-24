@@ -1,14 +1,114 @@
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color:darkgrey;
+
+:root {
+  --card-color:white; 
+  --primary-color: #302AE6;
+  --secondary-color: #536390;
+  --font-color: #424242;
+  --bg-color: darkgrey;
+  --heading-color: #292922;
+  --nav-color: white;
+  --nav-text:black;
+  --badge-color:white;
+  --button-color:deepskyblue;
+  --button-text:white;
+  --card-text: blue;
+  --form-color: white;
+  --list-color:white;
+  --span-color:white;
+  --tab-color:black;
 }
-* {box-sizing: border-box;}
+
+[data-theme="dark"] {
+  --card-color: gray; 
+  --primary-color: darkblue;
+  --secondary-color: #818cab;
+  --font-color: blue;
+  --bg-color: #161625;
+  --heading-color: #818cab;
+  --nav-color:gray;
+  --nav-text:blue;
+  --badge-color: black;
+  --button-color: darkblue;
+  --button-text:gray;
+  --card-text: black;
+  --form-color:  gray; 
+  --span-color:gray;
+  --tab-color: blue;
+
+}
+
+
+nav {
+  background-color: var(--nav-color);
+  color: var(--nav-text);
+
+
+  
+}
+.badge{
+  color: var(--badge-color);
+  
+}
+.card{
+  color: var(--card-text);
+  background-color: var(--card-color)
+}
+span{
+  background-color: var(--button-color);
+  
+}
+.btn{
+  background-color: var(--button-color);
+  color:var(--button-text);
+}
+h4{
+  color: var(--button-text);
+}
+button{
+  background-color: var(--button-color);
+  color: var(--button-text)
+
+}
+a{
+  color: var(--nav-text);
+}
+.nav-link{
+  
+}
+.nav-tabs .nav-item .nav-link.active {
+  background-color: var(--form-color);
+  color:var(--tab-color);
+}
+
+input{
+  background-color:var(--form-color);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+span{
+background-color:var(--span-color)
+}
+body {
+  min-height: 100vh;
+  position: relative;
+  margin:0;
+  font-family: "Lato", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
+
 
 
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
-  background-color: #555;
+  background-color:var(--button-color);
   color: white;
   padding: 16px 20px;
   padding-bottom: 50px;
@@ -36,7 +136,7 @@ body {
 .form-container {
   max-width: 300px;
   padding: 10px;
-  background-color: white;
+  background-color: var(--form-color)
 }
 
 /* Full-width input fields */
@@ -44,20 +144,20 @@ body {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
-  border: none;
-  background: #f1f1f1;
+  border: solid;
+  background: var(--form-color);
 }
 
 /* When the inputs get focus, do something */
 .form-container input[type=text]:focus, .form-container input[type=password]:focus {
-  background-color: #ddd;
+  background-color:var(--form-color);
   outline: none;
 }
 
 /* Set a style for the submit/login button */
 .form-container .btn {
   background-color: #4CAF50;
-  color: white;
+  color: var(--form-color);
   padding: 16px 20px;
   border: none;
   cursor: pointer;
@@ -75,4 +175,65 @@ body {
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
+input[type="submit"] {
+  background:white;
+  color:black;
+  border-style: solid;
+  border-color: white;
+  text-align:left;
+  cursor:pointer;
+}
 
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+
+}
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display:none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: #66bb6a;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

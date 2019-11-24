@@ -7,13 +7,13 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
         <link rel="stylesheet" href="profile.css" type="text/css"> 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+        
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     </head>
 
     <body>
         <header>
-            <nav class="navbar navbar-expand-md bg-light">
+            <nav class="navbar navbar-expand-md ">
 
           <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
             <span class="navbar-toggler-icon"></span>
@@ -116,17 +116,45 @@
 
         <footer class = "footer">
 
-                <nav class="navbar fixed-bottom navbar-light bg-light">
-                    <ul class="navbar-nav flex-row m-auto">
-                        <li class="nav-item">
-                            <a routerLink="/about" class="nav-link mr-2">ABOUT</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="contact.html" class="nav-link ml-2" style = "text-align: right">CONTACT US</a>
-                        </li>
-                    </ul>
-                </nav>
-        </footer>
-        
+                    
+    
+            <nav class="navbar fixed-bottom ">
+                    <label class="theme-switch" for="checkbox">
+                            <input type="checkbox" id="checkbox" />
+                            <div class="slider round"></div>
+                      </label>
+                  
+                    </div>
+           
+            </nav>
+          </footer>
+          <script>
+
+            const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+            const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+            function switchTheme(e) {
+                if (e.target.checked) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark'); //add this
+                }
+                else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    localStorage.setItem('theme', 'light'); //add this
+                }    
+            }
+            
+            
+            if (currentTheme) {
+                document.documentElement.setAttribute('data-theme', currentTheme);
+            
+                if (currentTheme === 'dark') {
+                    toggleSwitch.checked = true;
+                }
+            }
+            
+            
+            
+            toggleSwitch.addEventListener('change', switchTheme, false);
+            </script>
     </body>
 </html>

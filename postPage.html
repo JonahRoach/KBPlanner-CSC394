@@ -16,7 +16,7 @@
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-expand-md bg-light">
+    <nav class="navbar navbar-expand-md">
 
   <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
     <span class="navbar-toggler-icon"></span>
@@ -85,18 +85,47 @@
 
 
 <footer class = "footer">
+
+                    
     
-    <nav class="navbar fixed-bottom navbar-light bg-light">
-        <ul class="navbar-nav flex-row m-auto">
-            <li class="nav-item">
-                <a routerLink="/about" class="nav-link mr-2">ABOUT</a>
-            </li>
-            <li class="nav-item">
-                <a routerLink="/contact" class="nav-link ml-2" style = "text-align: right">CONTACT US</a>
-            </li>
-        </ul>
-    </nav>
+  <nav class="navbar fixed-bottom navbar-light">
+          <label class="theme-switch" for="checkbox">
+                  <input type="checkbox" id="checkbox" />
+                  <div class="slider round"></div>
+            </label>
+        
+          </div>
+ 
+  </nav>
 </footer>
+<script>
+
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  function switchTheme(e) {
+      if (e.target.checked) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark'); //add this
+      }
+      else {
+          document.documentElement.setAttribute('data-theme', 'light');
+          localStorage.setItem('theme', 'light'); //add this
+      }    
+  }
+  
+  
+  if (currentTheme) {
+      document.documentElement.setAttribute('data-theme', currentTheme);
+  
+      if (currentTheme === 'dark') {
+          toggleSwitch.checked = true;
+      }
+  }
+  
+  
+  
+  toggleSwitch.addEventListener('change', switchTheme, false);
+  </script>
 
 
 <!-- End of footer -->

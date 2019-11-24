@@ -10,158 +10,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        ul {
-            list-style-type: none;
-        }
-
-        body {
-            min-height: 100vh;
-            position: relative;
-            margin:0;
-            font-family: "Lato", sans-serif;
-            background-color: darkgrey;
-        }
-            
-        
-
-        * {
-            margin: 0;
-            box-sizing: border-box;
-        }
-
-        .wrapper {
-            /*background-color: #dfe6e9;*/
-            display: flex;
-            width: auto;
-            padding-top: 40px;
-            justify-content: left;
-        }
-
-        .calendar {
-            margin: auto;
-            width: 1200px;
-            background-color: #fff;
-            box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.2);
-       
-        }
-
-        .month {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding: 40px 30px;
-            text-align: center;
-            background-color: deepskyblue;
-            color: #fff;
-        }
-
-        .weekdays {
-            background-color: deepskyblue;
-            color: #fff;
-            padding: 7px 0;
-            display: flex;
-        }
-
-        .days {
-            font-weight: 300;
-            padding: 10px 0;
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .weekdays div,
-        .days div {
-            text-align: center;
-            width: 14.28%;
-        }
-
-        .days div {
-            padding: 10px 0;
-            margin-bottom: 10px;
-            transition: all 0.4s;
-        }
-
-        .prev_date {
-            color: #999;
-        }
-
-        .today {
-            background-color: deepskyblue;
-            color: #fff;
-        }
-
-        .days div:hover {
-            cursor: pointer;
-            background-color: #dfe6e9
-        }
-
-        .prev,
-        .next {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 23px;
-            background-color: rgba(0, 0, 0, 0.1);
-            transition: all 0.4s;
-        }
-
-        .prev:hover,
-        .next:hover {
-            cursor: pointer;
-            background-color: rgba(0, 0, 0, 0.2);
-        }
-
-        #month {
-            font-size: 30px;
-            font-weight: 500;
-        }
-        #box {
-          padding:5px;
-          width:200px;
-          z-index:10;
-          position:relative;  
-        }
-        #box form {
-         background:deepskyblue;
-         padding:5px;
-         display:none;
-         position:absolute;
-         top:27px;
-        }
-        #button {
-          width:75px;
-          background:#dc3545;
-          color:#fff;
-          padding:3px 10px;
-          border:1px solid #dc3545;  
-          margin-bottom:15px;  
-          cursor:pointer;
-        }
-        input[type="submit"] {
-          background:white;
-          color:black;
-          border-style: solid;
-          border-color: white;
-          text-align:left;
-          cursor:pointer;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="homepage.css"></style>
 </head>
 
-<body onload="renderDate()">
+<body >
 
     <header>
-            <nav class="navbar navbar-expand-md bg-light">
+        <nav class="navbar navbar-expand-md">
 
           <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
             <span class="navbar-toggler-icon"></span>
@@ -211,7 +66,7 @@
     <ul class="nav nav-pills nav-fill row justify-content-center" id="d-navbar" >
             <div id = "projectBox">
                     <!--<input type = "button" class = "btn btn-danger" id="addTask" value="+" onClick = "">-->
-                        <span id="projectButton" class = "btn btn-primary" >Project 1</span>
+                        <button id="projectButton" >Project 1</button>
                         <form action="" id="projectForm"  style="display:none;">
                         
                             <p> Project Description: </p>
@@ -225,110 +80,110 @@
     </header>
 
     <!-- End of Nav Bar -->
-    
-    
-    <div class = "container-fluid" style = "padding-top: 10px">
-            
-        <div class = "row">
-            <!-- TO DO Area -->
-            <div class = "col-4">
-                <div class = "card text-center" style = "min-height: 300px">
-                    <div class = "card-header">
+    <div class = "container-fluid text-center" id="popupTaskForm">
+            <form action="#" id="taskForm" name="generateTaskForm" style="text-align: center;">
+                <div class = "row">
+                    <div class = "col-sm" style = "text-align: right">
+                    <button id="close" class = "badge badge-danger" onclick= "taskForm_hide(); return false;">X</button>
                         
-                        <div class = "row justify-content-center">
-                            <h3 style = "padding-right: 10px;"> <span class = "badge badge-danger"> TO DO </span> </h3>
-                            <div id = "box">
-                            <!--<input type = "button" class = "btn btn-danger" id="addTask" value="+" onClick = "">-->
-                                <span id="button" class = "btn btn-danger">+</span>
-                                <form action="" id="taskForm">
+                    </div>
+                </div>
+                
+                <div class = "row">
+                    <div class = "col-sm" style="text-align: center">
+                        
+                        <h3 style = "padding-right: 10px;"> <span class = "badge badge-danger"> Generate New Task </span> </h3>
+                                    
+                    </div>
+        <!--
+                    <div class = "col-1" style = "text-align: right">
+                    <button id="close" class = "badge badge-danger" onclick= "taskForm_hide(); return false;">X</button>
+                    </div>
+        -->
+                </div>              
+                <p><input type="text" id='goalName' placeholder="Goal Name"></p>
+                <p>
+                <textarea id = 'descriptionInput' name='descriptionInput' placeholder ="Description"></textarea></p>
+                <p><input type = "text" id = 'assigneeInput' placeholder="Assigned Member Name"></p>
+                <p><input type = "date" id= 'dateInput'></p>
+                <p><button onclick="check_empty(); return false;">Create Task</button></p>
+        
+            </form>
+            </div>
+            
+            <div class = "container-fluid" style = "padding-top: 10px">
+                    
+                <div class = "row">
+                    <!-- TO DO Area -->
+                    <div class = "col-4">
+                        <div class = "card text-center" style = "min-height: 300px">
+                            <div class = "card-header">
                                 
-                                    <p><input type="text" id='goalName' placeholder="Goal Name"></p>
-                                    <p><input type="text" id = 'descriptionInput' placeholder="Description"></p>
-                                    <p><input type = "text" id = 'assigneeInput' placeholder="Assigned Member Name"></p>
-                                    <p>Due Date:<input type = "date" id= 'dateInput'></p>
-                                    <p><button onclick="createNewTask('toDoCards'); return false;">Create Task</button></p>
+                                <div class = "row justify-content-center">
+                                    <h3 style = "padding-right: 15px;"> <span class = "badge badge-danger"> TO DO </span> </h3>
+                                    <div id = "box">
+                                        <span id="button" class = "btn btn-danger" onclick = "taskForm_show(); return false;">+</span>
+        
+                                    </div>    
+                                </div>
+                            </div>
                             
-                                </form>
-                            </div>    
+                            <div class = "card-body">
+                               <div id="toDoCards" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                               
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class = "card-body">
-                       <div id="toDoCards" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                       
-                    </div>
-                </div>
-            </div>
-
-            <!-- IN PROGRESS Area -->
-            <div class = "col-4">
-                <div class = "card bg-light text-center" style = "min-height: 300px">
-                    <div class = "card-body">
-                        <div id="inProgressCards" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
-                    </div>
-
-                    <div class = "card-footer"> <span class = "badge badge-warning">IN PROGRESS</span></div>
-                </div>
-            </div>
-
-            <!-- DONE Area -->
-            <div class = "col-4">
-                <div class = "card text-center" style = "min-height: 300px">
-                    <div class = "card-header">
-                        <h3><span class = "badge badge-success"> DONE </span> </h3>
-                    </div>
-                    <div class = "card-body">
-                        <div id="doneCards" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
         
+                    <!-- IN PROGRESS Area -->
+                    <div class = "col-4">
+                        <div class = "card text-center" style = "min-height: 300px">
+                            <div class = "card-body">
+                                <div id="inProgressCards" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
         
-    <div class="wrapper">
-        <div class="calendar">
-            <div class="month">
-                <div class="prev" onclick="moveDate('prev')">
-                    <span>&#10094;</span>
-                </div>
-                <div>
-                    <h2 id="month"></h2>
-                    <p id="date_str"></p>
-                </div>
-                <div class="next" onclick="moveDate('next')">
-                    <span>&#10095;</span>
+                            </div>
+        
+                            <div class = "card-footer"> <span class = "badge badge-warning">IN PROGRESS</span></div>
+                        </div>
+                    </div>
+        
+                    <!-- DONE Area -->
+                    <div class = "col-4">
+                        <div class = "card text-center" style = "min-height: 300px">
+                            <div class = "card-header">
+                                <h3><span class = "badge badge-success"> DONE </span> </h3>
+                            </div>
+                            <div class = "card-body">
+                                <div id="doneCards" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="weekdays">
-                <div>Sun</div>
-                <div>Mon</div>
-                <div>Tue</div>
-                <div>Wed</div>
-                <div>Thu</div>
-                <div>Fri</div>
-                <div>Sat</div>
+            
+            <!-- End of Calendar Div -->
+            <center>
+                <div class="col-md-12" style = "text-align: center; padding: 15px;"><span class="badge" id="upcoming" style = "padding-top: 15px;"><h4>Upcoming Due Dates</h4></span></div>
+            <div class = "anyClass" id = "upcomingEventList">
+        
             </div>
-            <div class="days">
-
-            </div>
-        </div>
-    </div>
+        </center>
+        
     
     <!-- End of Calendar Div -->
     
     <footer class = "footer">
 
-            <nav class="navbar fixed-bottom navbar-light bg-light">
-                <ul class="navbar-nav flex-row m-auto">
-                    <li class="nav-item">
-                        <a routerLink="/about" class="nav-link mr-2">ABOUT</a>
-                    </li>
-                    <li class="nav-item">
-                        <a routerLink="/contact" class="nav-link ml-2" style = "text-align: right">CONTACT US</a>
-                    </li>
-                </ul>
+                    
+    
+            <nav class="navbar fixed-bottom navbar-light">
+                    <label class="theme-switch" for="checkbox">
+                            <input type="checkbox" id="checkbox" />
+                            <div class="slider round"></div>
+                      </label>
+                  
+                    </div>
+           
             </nav>
     </footer>
     
@@ -351,6 +206,34 @@
         });
 
     
+
+                
+        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+        const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark'); //add this
+            }
+            else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light'); //add this
+            }    
+        }
+
+
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+
+            if (currentTheme === 'dark') {
+                toggleSwitch.checked = true;
+            }
+        }
+
+
+
+        toggleSwitch.addEventListener('change', switchTheme, false);
         
         
         function resetProject()
@@ -358,16 +241,34 @@
             document.getElementById('projectForm').setAttribute("hidden") = false;
         }
 
+        function check_empty(){
+            if
+                (document.getElementById('goalName').value == "" || document.getElementById('descriptionInput').value=="" ||document.getElementById('assigneeInput').value==""||document.getElementById('dateInput').value == "") alert("Please fill all fields");
+            else{
+                createNewTask('toDoCards');
+            }
+        }
+        
+        function taskForm_show(){
+            document.getElementById('popupTaskForm').style.display = "inline-block";
+        }
+        
+        function taskForm_hide(){
+            document.getElementById('popupTaskForm').style.display = "none";
+        }
+        
+        function resetProject()
+        {
+            document.getElementById('projectForm').setAttribute("hidden") = false;
+        }
         function createNewTask(divSection){
             
             let goalName = document.getElementById('goalName').value;
             let descriptionInput = document.getElementById('descriptionInput').value;
             let assigneeInput = document.getElementById('assigneeInput').value;
             var assigneeOutput = 'Assigned to: ' + assigneeInput;
-
             let dateInput = document.getElementById('dateInput').value;
-            var dateOutput = 'Due Date: ' + dateInput;
-
+            var dateOutput = 'Due Date: ' + dateInput + '<br>';
             let divTag = document.createElement('div');
                 divTag.className = 'card text-center';
                 var dateGenerated = new Date();
@@ -379,7 +280,7 @@
                 cardBody.className='card-body';
       
             let title = document.createElement('h4');
-                title.innerHTML = goalName;
+                title.innerHTML = "<br>" + goalName;
                 title.className='card-title';
             
             var section = divSection;
@@ -387,7 +288,6 @@
                 moveLeftButton.innerHTML = "<";
                 moveLeftButton.addEventListener("click", function(){
                     var cardID = divTag.getAttribute("id");
-
                     if(section == "doneCards"){
                         document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
                         section = "inProgressCards";
@@ -417,6 +317,18 @@
                         }
                     
                     }, false);
+            
+            let deleteButton = document.createElement('button');
+            deleteButton.innerHTML = "Delete";
+            deleteButton.addEventListener("click", function(){
+                var cardID = divTag.getAttribute("id");
+                cardID = document.getElementById(cardID);
+                cardID.remove();
+                
+                //SECTION FOR PHP DB REMOVAL CODE
+                
+            }, false);
+            
             let assignee = document.createElement('h6');
                 assignee.innerHTML = assigneeOutput;
             let bodyText = document.createElement('div');
@@ -426,11 +338,12 @@
                 footerText.innerHTML = dateOutput;
                 footerText.className = 'card-footer';
             
-            title.append(moveLeftButton);
-            title.append(moveRightButton);
+            title.prepend(moveRightButton);
+            title.prepend(moveLeftButton);
             cardBody.appendChild(title);
             cardBody.appendChild(assignee);
             cardBody.appendChild(bodyText);
+            footerText.append(deleteButton);
             cardBody.appendChild(footerText);
             divTag.appendChild(cardBody);
             divTag.ondrop = "drop(event)";
@@ -438,14 +351,33 @@
             
             //divTag.innerHTML = "This is information";
             document.getElementById(divSection).appendChild(divTag);
-            
+            generateUpcomingEvents(goalName, dateInput, assigneeInput);
             
             document.getElementById('taskForm').reset();
-
         }
-
-        function generateTask(divSection, name, description, dueDate, assignee, goal_id)
-        {
+        
+        function generateUpcomingEvents(name, dueDate, assignee){
+            var rowDivTag = document.createElement('div');
+                rowDivTag.className = "row";
+                rowDivTag.style = "background-color: white; padding-top: 15px;"
+            var colDivTag = document.createElement('div');
+                colDivTag.className = "col";
+            var dueDateCol = document.createElement('div');
+                dueDateCol.className = "col-md-3";
+                dueDateCol.innerHTML = "<h3><span class = 'badge badge-info'>" + dueDate + "</span></h3>";
+            var infoCol = document.createElement('div');
+                infoCol.className = "col-md-9";
+                infoCol.innerHTML = "<strong>" + name + "</strong><br><em>Assigned to: " + assignee + "</em></br>";
+        
+            colDivTag.append(dueDateCol);
+            colDivTag.append(infoCol);
+        
+            rowDivTag.append(colDivTag);
+            
+            document.getElementById("upcomingEventList").appendChild(rowDivTag);
+            
+        }
+        function generateTask(divSection, name, description, dueDate, assignee, goal_id){
             if(divSection == "inProgressCards"){
                 divSection = document.getElementById('inProgressCards');
             }
@@ -455,28 +387,23 @@
             else if(divSection == "toDoCards"){
                 divSection = document.getElementById('toDoCards');
             }
-
             var assigneeOutput = 'Assigned to: ' + assignee;
-            var dateOutput = 'Due Date: ' + dueDate;
-
+            var dateOutput = 'Due Date: ' + dueDate + '<br>';
             var divTag = document.createElement('div');
                 divTag.className = 'card text-center';
                 divTag.setAttribute("id", goal_id);
-
             var cardBody = document.createElement('div');
                 cardBody.className='card-body';
-     
+      
             var title = document.createElement('h4');
-                title.innerHTML = name;
+                title.innerHTML ="<br>" + name;
                 title.className='card-title';
-
             var section = divSection.getAttribute('id');
             //console.log(section);
             var moveLeftButton = document.createElement('button');
                 moveLeftButton.innerHTML = "<";
                 moveLeftButton.addEventListener("click", function(){
                     var cardID = divTag.getAttribute("id");
-
                     if(section == "doneCards"){
                         document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
                         section = "inProgressCards";
@@ -486,27 +413,36 @@
                     section = "toDoCards";
                     }
                 }, false);
-
-                let moveRightButton = document.createElement('button');
-                moveRightButton.innerHTML = ">";
-                //console.log(divTag.getAttribute("id"));
-                moveRightButton.addEventListener("click", function(){
-                        //moveCard(divSection, divTag.getAttribute("id"))
-                        var cardID = divTag.getAttribute("id");
-                        //console.log(cardID);
-                        //console.log(section);
-                        if(section == "toDoCards"){
-                            document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
-                            section = "inProgressCards";
-                            
-                        }
-                        else if(section == "inProgressCards"){
-                            //console.log('got here');
-                            document.getElementById("doneCards").appendChild(document.getElementById(cardID));
-                            section = "doneCards";
-                        }
-                    
-                    }, false);
+            let moveRightButton = document.createElement('button');
+            moveRightButton.innerHTML = ">";
+            //console.log(divTag.getAttribute("id"));
+            moveRightButton.addEventListener("click", function(){
+                    //moveCard(divSection, divTag.getAttribute("id"))
+                    var cardID = divTag.getAttribute("id");
+                    //console.log(cardID);
+                    //console.log(section);
+                    if(section == "toDoCards"){
+                        document.getElementById("inProgressCards").appendChild(document.getElementById(cardID));
+                        section = "inProgressCards";
+                    }
+                    else if(section == "inProgressCards"){
+                        //console.log('got here');
+                        document.getElementById("doneCards").appendChild(document.getElementById(cardID));
+                        section = "doneCards";
+                    }
+                }, false);
+            
+            let deleteButton = document.createElement('button');
+            deleteButton.innerHTML = "Delete";
+            deleteButton.addEventListener("click", function(){
+                var cardID = divTag.getAttribute("id");
+                cardID = document.getElementById(cardID);
+                cardID.remove();
+                
+                //SECTION FOR PHP DB REMOVAL CODE
+                
+            }, false);
+            
             
             let assigneeSection = document.createElement('h6');
                 assigneeSection.innerHTML = assigneeOutput;
@@ -518,8 +454,9 @@
                 footerText.innerHTML = dateOutput;
                 footerText.className = 'card-footer';
             
-            title.append(moveLeftButton);
-            title.append(moveRightButton);
+            title.prepend(moveRightButton);
+            title.prepend(moveLeftButton);
+            footerText.append(deleteButton);
             cardBody.appendChild(title);
             cardBody.appendChild(assigneeSection);
             cardBody.appendChild(bodyText);
@@ -527,81 +464,22 @@
             divTag.appendChild(cardBody);
             divTag.ondrop = "drop(event)";
             divTag.ondragover = "allowDrop(event)";
-
             divSection.appendChild(divTag);
+            generateUpcomingEvents(name, dueDate, assignee);
         }
-
         
         function allowDrop(ev) {
           ev.preventDefault();
         }
-
         function drag(ev) {
           ev.dataTransfer.setData("Node", ev.target.id);
         }
-
         function drop(ev) {
           ev.preventDefault();
           var data = ev.dataTransfer.getData("Node");
           ev.target.appendChild(document.getElementById(data));
         }
-        
-
-        var dt = new Date();
-        //console.log(dt);
-        function renderDate() {
-            //console.log(dt);
-            var day = dt.getDay();
-            var today = new Date();
-            var endDate = new Date(
-                dt.getFullYear(),
-                dt.getMonth() + 1,
-                0
-            ).getDate();
-            //console.log(dt.getFullYear());
-            var prevDate = new Date(
-                dt.getFullYear(),
-                dt.getMonth(),
-                0
-            ).getDate();
-            var months = [
-                "January",
-                "February",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-                "August",
-                "September",
-                "October",
-                "November",
-                "December"
-            ]
-            document.getElementById("month").innerHTML = months[dt.getMonth()];
-            //console.log(dt.toDateString());
-            var cells = "";
-            for (x = day; x > 0; x--) {
-                cells += "<div class='prev_date'>" + (prevDate - x + 1) + "</div>";
-            }
-            //console.log(day);
-            for (i = 1; i <= endDate; i++) {
-                if (i == today.getDate() && dt.getMonth() == today.getMonth()) cells += "<div class='today'>" + i + "</div>";
-                else
-                    cells += "<div>" + i + "</div>";
-            }
-            document.getElementsByClassName("days")[0].innerHTML = cells;
-
-        }
-
-        function moveDate(para) {
-            if(para == "prev") {
-                dt.setMonth(dt.getMonth() - 1);
-            } else if(para == 'next') {
-                dt.setMonth(dt.getMonth() + 1);
-            }
-            renderDate();
-        }
+          
 
     </script>
 </body>

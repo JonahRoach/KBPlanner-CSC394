@@ -50,6 +50,7 @@ var sectionlen = 0
 const maxSectionLen = 5
 var userId = 0 //will use getUser from database
 
+
 var thumbimages = 
 [
 "assets/svg/thumbs-up.png",
@@ -81,6 +82,12 @@ window.onload = function startup()
     this.generatePost("Brainstorming", 1000, "Frank","Title", "Description", 10,[])
     this.generatePost("General",2000, "Bruh","Analytics", "Something about something", 20,["Hello"])
 }
+
+         
+
+
+
+
 
 function populateDiscussionSections()
 {
