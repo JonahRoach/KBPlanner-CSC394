@@ -48,6 +48,13 @@ span{
 h4{
     color: var(--button-text);
 }
+.card-footer{
+  color: var(--nav-text);
+}
+.card-body{
+  color: var(--nav-text);
+}
+
 button{
     background-color: var(--button-color);
     color: var(--button-text)

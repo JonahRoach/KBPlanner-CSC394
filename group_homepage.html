@@ -359,12 +359,12 @@
         function generateUpcomingEvents(name, dueDate, assignee){
             var rowDivTag = document.createElement('div');
                 rowDivTag.className = "row";
-                rowDivTag.style = "background-color: white; padding-top: 15px;"
+                rowDivTag.style = "background-color: var(--card-color); padding-top: 15px;"
             var colDivTag = document.createElement('div');
                 colDivTag.className = "col";
             var dueDateCol = document.createElement('div');
                 dueDateCol.className = "col-md-3";
-                dueDateCol.innerHTML = "<h3><span class = 'badge badge-info'>" + dueDate + "</span></h3>";
+                dueDateCol.innerHTML = "<h3><span class = 'badge' style='background-color: var(--button-color);'>" + dueDate + "</span></h3>";
             var infoCol = document.createElement('div');
                 infoCol.className = "col-md-9";
                 infoCol.innerHTML = "<strong>" + name + "</strong><br><em>Assigned to: " + assignee + "</em></br>";

@@ -95,6 +95,10 @@ ul {
 span{
 background-color:var(--span-color)
 }
+
+col{
+  background-color:gray;
+}
 body {
   min-height: 100vh;
   position: relative;
