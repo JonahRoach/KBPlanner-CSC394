@@ -48,6 +48,9 @@ span{
 h4{
     color: var(--button-text);
 }
+.card-title{
+  color: var(--nav-text);
+}
 .card-footer{
   color: var(--nav-text);
 }
