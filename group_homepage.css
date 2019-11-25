@@ -1,0 +1,75 @@
+        * {
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        body {
+            min-height: 100vh;
+            position: relative;
+            margin:0;
+            font-family: "Lato", sans-serif;
+            background-color: darkgrey;
+        }
+            
+        
+
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        #box {
+          padding:5px;
+          width:200px;
+          z-index:10;
+          position:relative;  
+        }
+        #box form {
+         background:deepskyblue;
+         padding:5px;
+         display:none;
+         position:absolute;
+         top:27px;
+        }
+        #button {
+          width:75px;
+          background:#dc3545;
+          color:#fff;
+          padding:3px 10px;
+          border:1px solid #dc3545;  
+          margin-bottom:15px;  
+          cursor:pointer;
+        }
+        input[type="submit"] {
+          background:white;
+          color:black;
+          border-style: solid;
+          border-color: white;
+          text-align:left;
+          cursor:pointer;
+        }
+        #popupTaskForm{
+            width:400px;
+            opacity:.95;
+            position: fixed;
+            display:none;
+            top:50%;
+            left:50%;
+            margin-left: -200px;
+            margin-top: -200px;
+            padding: 30px;
+            background-color: dimgrey;
+            overflow:auto;
+            z-index: 99 !important;
+        }
+        
+        .anyClass{
+            height: 300px;
+            width: 40%;
+            overflow-y: scroll;
+            overflow-x:hidden;
+            padding: 15px;
+        }
